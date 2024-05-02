@@ -1,0 +1,83 @@
+.Container {
+  /* margin-top: 10px;
+  margin-left: 10px; */
+  align-items:flex-start; 
+  width: 350px;
+  height: 900px;
+}
+
+.Search_Container{
+  display: flex;
+  justify-content: center;
+}
+
+.Box {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 250px;
+  height: 50px;
+  color: #ffffff;
+  border-radius: 10px; 
+  outline: solid 1px gray;
+  /* cursor: pointer; */
+}
+
+.Search_Text {
+  font-size: 20px;
+  font-weight: 300;
+  color: gray;
+  font-family: "Noto Sans KR", sans-serif;
+}
+
+.Horizon_Line {
+  display: flex;
+  height: 1px;
+  width: 100%;
+  margin-top: 5%;
+  border-bottom: 1px solid white;
+}
+
+.RecentSearch_Container {
+  display: flex;
+}
+
+.RecentSearch_Text {
+  margin-top: 20px;
+  font-size: 20px;
+  font-weight: 300;
+  color: gray;
+  font-family: "Noto Sans KR", sans-serif;
+}
+
+.City_Container {
+  margin-top: 200px;
+  height: 400px;
+  /* display: flex; */
+  background-color: grey;
+  justify-content: space-between;
+}
+
+.City_Box {
+  display: flex;
+}
+
+.City_Name {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 20px;
+  width: 50px;
+  height: 50px;
+  border-radius: 10px;
+  outline: solid 1px white;
+}
+
+.City_Name_Dummy {
+  margin: 20px;
+  width: 50px;
+  height: 50px;
+}
+
+
+
