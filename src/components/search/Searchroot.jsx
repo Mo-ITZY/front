@@ -73,11 +73,8 @@ function Search() {
           <div className={styles.City_Name}>
             충남
           </div>
-          <div className={styles.City_Name_Dummy}>
-            
-          </div>
+          <div className={styles.City_Name_Dummy}></div>
         </div>
-        
       </div>
     </div>
   )
