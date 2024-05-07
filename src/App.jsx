@@ -4,14 +4,13 @@ import Main from './components/main/Mainroot'
 import Login from './components/login/Loginroot'
 import All from './components/all/allroot'
 //import Allview from './components/all/allrootview/allrootview'
+import Search from './components/search/Searchroot'
 import { useMediaQuery } from "react-responsive"
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom"
 
 
-
-
-function App() {
-  const isMobile = useMediaQuery({
+  function App() {
+    const isMobile = useMediaQuery({
       query : "(max-width:768px)"
     });
 
@@ -26,7 +25,7 @@ function App() {
           <Route path="/main" element={isPC ? <Main /> : isMobile && <Main />} />
           <Route path="/login" element={isPC ? <Login /> : isMobile && <Login />} />
           <Route path="/all" element={isPC ? <All /> : isMobile && <All />} />
-          
+          <Route path="/search" element={isPC ? <Search /> : isMobile && <Search />} />
         </Routes>
       </Router>
     </>
