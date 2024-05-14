@@ -2,7 +2,7 @@
 import { useEffect, useState } from "react";
 import fetchData from "../service/api";
 import { NavLink } from "react-router-dom";
-
+//import Header from "../header/header";
 
 
 function ALLroot() {
@@ -24,17 +24,18 @@ function ALLroot() {
 
   return (
     <div>
-      <div>
+      <div className={styles.aa}>
         {datas && datas.getFestivalKr?.item.map((data, idx) => 
         <div key={idx} className={styles.box11}>
+          <NavLink to={`/allrootview/${data.UC_SEQ}`} className={styles.navLink}>
             <img src={data.MAIN_IMG_THUMB} className={styles.img_size}></img>
-            <div className={styles.aa}>
+            <div>
               <p>{data.SUBTITLE}</p>
               <p>{data.PLACE}</p>
               <p>{data.USAGE_DAY_WEEK_AND_TIME}</p>
             </div>
-        </div>
-        
+          </NavLink>
+        </div>   
       )}
       </div>
     </div>

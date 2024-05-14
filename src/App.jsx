@@ -72,6 +72,7 @@ import PrivateRoute from './PrivateRoute';
           <Route path="/main" element={<PrivateRoute element={isPC ? <Main /> : isMobile && <Main />} />} />
           <Route path="/login" element={isPC ? <Login /> : isMobile && <Login />} />
           <Route path="/all" element={<PrivateRoute element={isPC ? <All /> : isMobile && <All />} />} />
+          <Route path="/allrootview/:id" element={<PrivateRoute element={isPC ? <Allview /> : isMobile && <Allview />} />} />
           <Route path="/search" element={<PrivateRoute element={isPC ? <Search /> : isMobile && <Search />} />} />
         </Routes>
       </Router>
