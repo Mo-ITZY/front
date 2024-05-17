@@ -59,7 +59,7 @@ const Loginroot = () => {
   const [loginId, setLoginId] = useState('');
   const [password, setPassword] = useState('');
   const [errorMessage, setErrorMessage] = useState('');
-  const navigate = useNavigate();
+  const navigate = useNavigate();  
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -68,12 +68,13 @@ const Loginroot = () => {
         loginId,
         password
       });
-      if (response.status === 200) {
+      if (response.status === 200) {  
         navigate('/main'); // 로그인 성공 시 이동할 페이지
       }
     } catch (error) {
       if (error.response && error.response.status === 401) {
         setErrorMessage('Invalid login ID or password');
+        navigate('/login');
       } else {
         console.error('Login failed:', error);
         setErrorMessage('An unexpected error occurred');
@@ -94,7 +95,7 @@ const Loginroot = () => {
         </div>
         <button type="submit">Login</button>
       </form>
-      {errorMessage && <div style={{ color: 'red' }}>{errorMessage}</div>}
+      {errorMessage && <div style={{ color: 'red' }}>{errorMessage}</div>}  
     </div>
   );
 };
