@@ -29,54 +29,56 @@ import PrivateRoute from './PrivateRoute';
 //       </div>
 //     );
 //   }
+// ----------------------------------------------------------------------------------
 
-  // function App() {
-  //   const isMobile = useMediaQuery({
-  //     query : "(max-width:768px)"
-  //   });
 
-  // const isPC = useMediaQuery({
-  //     query : "(min-width:769px)"
-  //   });
-  // return (
-  //   <>
-  //      <Router>
-  //       <Routes>
-  //         <Route path="/" element={isPC ? <Intro /> : isMobile && <Intro />} />
-  //         <Route path="/main" element={isPC ? <Main /> : isMobile && <Main />} />
-  //         <Route path="/login" element={isPC ? <Login /> : isMobile && <Login />} />
-  //         <Route path="/all" element={isPC ? <All /> : isMobile && <All />} />
-  //         <Route path="/search" element={isPC ? <Search /> : isMobile && <Search />} />
-  //       </Routes>
-  //     </Router>
-  //   </>
-  //   )
-  // }
+  function App() {
+    const isMobile = useMediaQuery({
+      query : "(max-width:768px)"
+    });
+
+  const isPC = useMediaQuery({
+      query : "(min-width:769px)"
+    });
+  return (
+    <>
+       <Router>
+        <Routes>
+          <Route path="/" element={isPC ? <Intro /> : isMobile && <Intro />} />
+          <Route path="/main" element={isPC ? <Main /> : isMobile && <Main />} />
+          <Route path="/login" element={isPC ? <Login /> : isMobile && <Login />} />
+          <Route path="/all" element={isPC ? <All /> : isMobile && <All />} />
+          <Route path="/search" element={isPC ? <Search /> : isMobile && <Search />} />
+        </Routes>
+      </Router>
+    </>
+    )
+  }
 
 
   //-------------------------------------기존 코드--------------------------------------------------
 
-  function App() {
-    const isMobile = useMediaQuery({
-      query: "(max-width:768px)"
-    });
-  
-    const isPC = useMediaQuery({
-      query: "(min-width:769px)"
-    });
-  
-    return (
-      <Router>
-        <Routes>
-          <Route path="/" element={isPC ? <Intro /> : isMobile && <Intro />} />
-          <Route path="/main" element={<PrivateRoute element={isPC ? <Main /> : isMobile && <Main />} />} />
-          <Route path="/login" element={isPC ? <Login /> : isMobile && <Login />} />
-          <Route path="/all" element={<PrivateRoute element={isPC ? <All /> : isMobile && <All />} />} />
-          <Route path="/allrootview/:id" element={<PrivateRoute element={isPC ? <Allview /> : isMobile && <Allview />} />} />
-          <Route path="/search" element={<PrivateRoute element={isPC ? <Search /> : isMobile && <Search />} />} />
-        </Routes>
-      </Router>
-    );
-  }
+// function App() {
+//   const isMobile = useMediaQuery({
+//     query: "(max-width:768px)"
+//   });
+
+//   const isPC = useMediaQuery({
+//     query: "(min-width:769px)"
+//   }); 
+
+//   return (
+//     <Router>
+//       <Routes>
+//         <Route path="/" element={isPC ? <Intro /> : isMobile && <Intro />} />
+//         <Route path="/main" element={<PrivateRoute element={isPC ? <Main /> : isMobile && <Main />} />} />
+//         <Route path="/login" element={isPC ? <Login /> : isMobile && <Login />} />
+//         <Route path="/all" element={<PrivateRoute element={isPC ? <All /> : isMobile && <All />} />} />
+//         <Route path="/allrootview/:id" element={<PrivateRoute element={isPC ? <Allview /> : isMobile && <Allview />} />} />
+//         <Route path="/search" element={<PrivateRoute element={isPC ? <Search /> : isMobile && <Search />} />} />
+//       </Routes>
+//     </Router>
+//   );
+// }
 
 export default App;
