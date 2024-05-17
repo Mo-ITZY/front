@@ -7,7 +7,7 @@ import { NavLink } from "react-router-dom";
 
 function ALLroot() {
   const [datas, setDatas] = useState([]); 
-  useEffect(() => {
+  useEffect(() => { 
     const fetchDataFromAPI = async () => {
       try {
         const result = await fetchData();

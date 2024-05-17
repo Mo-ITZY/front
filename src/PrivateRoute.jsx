@@ -2,12 +2,10 @@ import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import { Navigate } from "react-router-dom";
 
-// PrivateRoute 컴포넌트는 보호된 경로에 대한 접근을 제어합니다.
+
 const PrivateRoute = ({ element, isPC, isMobile }) => {
-  // auth 상태를 관리하기 위한 useState 훅
   const [auth, setAuth] = useState(null);
 
-  // 컴포넌트가 마운트될 때 사용자의 인증 상태를 확인
   useEffect(() => {
     const checkAuth = async () => {
       try {
@@ -18,7 +16,6 @@ const PrivateRoute = ({ element, isPC, isMobile }) => {
         setAuth(false); // 인증 실패 시 auth 상태를 false로 설정
       }
     };
-
     checkAuth();
   }, []);
 
