@@ -6,6 +6,7 @@ import Main from './components/main/Mainroot';
 import Login from './components/login/Loginroot';
 import All from './components/all/allroot';
 import Search from './components/search/Searchroot';
+import Signin from './components/signin/Signin';
 import { useMediaQuery } from "react-responsive";
 import { BrowserRouter as Router, Routes, Route, Navigate } from "react-router-dom";
 
@@ -49,6 +50,7 @@ import PrivateRoute from './PrivateRoute';
           <Route path="/login" element={isPC ? <Login /> : isMobile && <Login />} />
           <Route path="/all" element={isPC ? <All /> : isMobile && <All />} />
           <Route path="/search" element={isPC ? <Search /> : isMobile && <Search />} />
+          <Route path="/signin" element={isPC ? <Signin /> : isMobile && <Signin />} />
         </Routes>
       </Router>
     </>
