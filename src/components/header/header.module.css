@@ -9,5 +9,6 @@
 .header_location{
     position: fixed;
     top: 40px;
-    left: 40%;
+    left: 50%;
+    transform: translateX(-50%);
 }

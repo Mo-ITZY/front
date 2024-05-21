@@ -30,3 +30,9 @@
     align-items: center;
     justify-content: center;
 }
+
+.err_message {
+  color: rgb(246, 255, 0);
+  font-size: 18px;
+  margin-top: 20px;
+}
