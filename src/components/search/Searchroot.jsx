@@ -13,7 +13,7 @@ function Search() {
         </div>
       </div>
       
-      <div className={styles.Horizon_Line}></div>
+      <div class={styles.Horizon_Line}></div>
 
       <div className={styles.RecentSearch_Container}>
         <div className={styles.RecentSearch_Text}>
@@ -71,7 +71,7 @@ function Search() {
             <div className={styles.City_Name}>
               부산
             </div>
-          </NavLink>
+          </NavLink>       
           <NavLink>
             <div className={styles.City_Name}>
               서울
