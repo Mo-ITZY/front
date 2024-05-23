@@ -1,4 +1,4 @@
-﻿@import url("https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@100;200;300;400;500;600;700;800;900&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@100;200;300;400;500;600;700;800;900&display=swap");
 
 .input_box{
     height: 36px;
@@ -36,9 +36,14 @@
   font-size: 18px;
   margin-top: 20px;
 }
-.login_word{
+.signin_word{
     font-family: "Noto Sans KR", sans-serif;
     font-style: normal;
     font-weight: 800;
     font-size: 24px;
+}
+.mark{
+    display: flex;
+    align-items: left;
+    margin-top: 20px;
 }

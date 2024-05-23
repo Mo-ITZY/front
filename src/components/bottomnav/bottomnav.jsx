@@ -41,13 +41,13 @@ function Bottomnav() {
         style: location.pathname === "/search" ? "" : styles.emt_font,
       },
       {
-        path: "/search",
+        path: "/all",
         icon: (
           <div>
-            {location.pathname === "/search" ? (
-              <Mainlogo className={styles.click_emt}/>
-            ) : (
+            {['/main', '/search', '/like', '/profile'].includes(location.pathname) ? (
               <Mainlogo_black className={styles.click_emt} />
+            ) : (
+              <Mainlogo className={styles.click_emt} />
             )}
           </div>
         ),
