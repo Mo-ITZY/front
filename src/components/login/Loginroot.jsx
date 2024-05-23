@@ -1,6 +1,6 @@
 ﻿import { useState } from 'react';
 import axios from 'axios';
-import { useNavigate } from 'react-router-dom';
+import { NavLink, useNavigate } from 'react-router-dom';
 import styles from "./Loginroot.module.css";
 import Header from '../header/header';
 
@@ -44,7 +44,9 @@ const Loginroot = () => {
         
         <div className={styles.button_location}>
           <div><button type="submit" className={styles.button}>로그인</button></div>
-          <div><button type="submit" className={styles.button}>회원가입</button></div>
+          <NavLink to = '../signin'>
+            <div className={styles.button}>회원가입</div>
+          </NavLink>
         </div>
       </form>
       {errorMessage && <div className={styles.err_message}>{errorMessage}</div>}

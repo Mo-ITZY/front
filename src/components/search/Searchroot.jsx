@@ -67,7 +67,7 @@ function Search() {
           </NavLink>
         </div>
         <div className={styles.City_Box}>
-          <NavLink to="./searchDetail">
+          <NavLink to="../all">
             <div className={styles.City_Name}>
               부산
             </div>
