@@ -8,6 +8,7 @@ import Bottomnav from './components/bottomnav/bottomnav';
 import Profile from './components/profile/Profileroot'
 import Like from './components/like/likeroot';
 import AllRootView from './components/all/allrootview/allrootview';
+import Signin from './components/signin/Signin';
 import { useMediaQuery } from "react-responsive";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 
@@ -54,6 +55,7 @@ import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
           <Route path="/search" element={isPC ? <Search /> : isMobile && <Search />} />
           <Route path="/profile" element={isPC ? <Profile /> : isMobile && <Profile />} />
           <Route path="/like" element={isPC ? <Like /> : isMobile && <Like />} />
+          <Route path="/signin" element={isPC ? <Signin /> : isMobile && <Signin />} />
         </Routes>
         <Bottomnav />
       </Router>
