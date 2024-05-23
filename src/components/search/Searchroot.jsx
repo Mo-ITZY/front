@@ -13,7 +13,7 @@ function Search() {
         </div>
       </div>
       
-      <div class={styles.Horizon_Line}></div>
+      <div className={styles.Horizon_Line}></div>
 
       <div className={styles.RecentSearch_Container}>
         <div className={styles.RecentSearch_Text}>

@@ -1,17 +1,19 @@
 import './App.css';
-import React, { useEffect, useState } from 'react';
-import axios from 'axios';
 import Intro from './components/Intro/Introroot';
 import Main from './components/main/Mainroot';
 import Login from './components/login/Loginroot';
 import All from './components/all/allroot';
 import Search from './components/search/Searchroot';
+import Bottomnav from './components/bottomnav/bottomnav';
+import Profile from './components/profile/Profileroot'
+import Like from './components/like/likeroot';
+import AllRootView from './components/all/allrootview/allrootview';
 import Signin from './components/signin/Signin';
 import { useMediaQuery } from "react-responsive";
-import { BrowserRouter as Router, Routes, Route, Navigate } from "react-router-dom";
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 
 // PrivateRoute 컴포넌트를 위한 파일에서 import
-import PrivateRoute from './PrivateRoute';
+//import PrivateRoute from './PrivateRoute';
 
 // function App() {
 //     const [message, setMessage] = useState('');
@@ -49,9 +51,13 @@ import PrivateRoute from './PrivateRoute';
           <Route path="/main" element={isPC ? <Main /> : isMobile && <Main />} />
           <Route path="/login" element={isPC ? <Login /> : isMobile && <Login />} />
           <Route path="/all" element={isPC ? <All /> : isMobile && <All />} />
+          <Route path="/allrootview/:id" element={isPC ? <AllRootView /> : isMobile && <AllRootView />} />
           <Route path="/search" element={isPC ? <Search /> : isMobile && <Search />} />
+          <Route path="/profile" element={isPC ? <Profile /> : isMobile && <Profile />} />
+          <Route path="/like" element={isPC ? <Like /> : isMobile && <Like />} />
           <Route path="/signin" element={isPC ? <Signin /> : isMobile && <Signin />} />
         </Routes>
+        <Bottomnav />
       </Router>
     </>
     )

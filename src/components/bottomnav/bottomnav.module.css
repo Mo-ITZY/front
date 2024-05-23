@@ -1,0 +1,70 @@
+﻿
+nav{
+    overflow: hidden;
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 58px;
+    display: flex;
+    justify-content: center;
+    
+}
+nav > div {
+    text-align: center;
+    float: center;
+    width: 20%;
+    height: 58px;
+    line-height: 20px; 
+    caret-color: transparent;
+    background-color: white;
+    border-top: solid 1px black;
+}
+
+.main_button {
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+    top: 3px;
+}
+
+.emt1, .emt2, .emt4 {
+    font-size: 30px;
+    margin-top: 10px;
+}
+.main_emt{
+    margin-top: 10px;
+}
+.emt3{
+    font-size: 26px;
+    margin-top: 10px;
+}
+.click_emt{
+    color: #5CE1E6;
+    font-size: 30px;
+    margin-top: 10px;
+}
+
+.main_emt{
+    margin-top: 10px;
+}
+.nav_font {
+    position: relative;
+    bottom: -10px;
+}
+
+.emt_font{
+    font-family: "Noto Sans KR", sans-serif;
+    font-style: normal;
+    font-weight: 500; 
+    font-size: 8px;
+    color: #767676;
+    position: relative;
+    top: -10px;
+}
+
+.nav_link{
+    text-decoration: none;
+    color: inherit;
+}

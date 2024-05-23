@@ -1,9 +1,9 @@
-import React, { useEffect, useState } from 'react';
+/*import { useEffect, useState } from 'react';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
 
 const Dashboard = () => {
-  const [user, setUser] = useState(null);
+  //const [user, setUser] = useState(null);
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -29,4 +29,4 @@ const Dashboard = () => {
   );
 };
 
-export default Dashboard;
+export default Dashboard;*/

@@ -1,4 +1,4 @@
-﻿import styles from './Mainroot.module.css';
+﻿import styles from './Profileroot.module.css';
 import { NavLink } from "react-router-dom";
 import Header from '../header/header';
 
@@ -6,8 +6,8 @@ function Mainroot() {
   return (
     <div>
         <Header />
-        <NavLink to='/all'>
-          <div className={styles.Look_Around_Box}>각 지역축제 더보기</div>
+        <NavLink to='/profile'>
+          <div className={styles.Look_Around_Box}>프로필</div>
         </NavLink>
     </div>
   )

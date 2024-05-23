@@ -34,6 +34,7 @@ const Loginroot = () => {
     <div>
       <Header />
       <form onSubmit={handleSubmit}>
+        <div className={styles.login_word}>로그인</div>
         <div>
           <input type="text" value={loginId} placeholder='아이디를 입력해주세요'  onChange={(e) => setLoginId(e.target.value)} className={styles.input_box} />
         </div>
