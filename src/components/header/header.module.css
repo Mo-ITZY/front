@@ -1,14 +1,8 @@
-﻿.header_box{
-    width: 475%;
-    border-bottom: solid 1px #000000;
-    margin-left: -180%;
-}
-.logo_location{
-    margin-bottom: 20px;
-}
-.header_location{
+﻿.header_location{
     position: fixed;
-    top: 40px;
-    left: 50%;
-    transform: translateX(-50%);
+    width: 100%;
+    border-bottom: solid 1px #000000;
+    top: 30px;
+    left: 0;
+    padding-bottom: 20px;
 }

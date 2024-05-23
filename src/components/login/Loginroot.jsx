@@ -1,6 +1,6 @@
 ﻿import { useState } from 'react';
 import axios from 'axios';
-import { useNavigate } from 'react-router-dom';
+import { NavLink, useNavigate } from 'react-router-dom';
 import styles from "./Loginroot.module.css";
 import Header from '../header/header';
 
@@ -34,6 +34,7 @@ const Loginroot = () => {
     <div>
       <Header />
       <form onSubmit={handleSubmit}>
+        <div className={styles.login_word}>로그인</div>
         <div>
           <input type="text" value={loginId} placeholder='아이디를 입력해주세요'  onChange={(e) => setLoginId(e.target.value)} className={styles.input_box} />
         </div>
@@ -43,7 +44,9 @@ const Loginroot = () => {
         
         <div className={styles.button_location}>
           <div><button type="submit" className={styles.button}>로그인</button></div>
-          <div><button type="submit" className={styles.button}>회원가입</button></div>
+          <NavLink to = '../signin'>
+            <div className={styles.button}>회원가입</div>
+          </NavLink>
         </div>
       </form>
       {errorMessage && <div className={styles.err_message}>{errorMessage}</div>}

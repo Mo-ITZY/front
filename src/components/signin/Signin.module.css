@@ -30,3 +30,20 @@
     align-items: center;
     justify-content: center;
 }
+
+.err_message {
+  color: rgb(246, 255, 0);
+  font-size: 18px;
+  margin-top: 20px;
+}
+.signin_word{
+    font-family: "Noto Sans KR", sans-serif;
+    font-style: normal;
+    font-weight: 800;
+    font-size: 24px;
+}
+.mark{
+    display: flex;
+    align-items: left;
+    margin-top: 20px;
+}

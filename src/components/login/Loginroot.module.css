@@ -36,3 +36,10 @@
   font-size: 18px;
   margin-top: 20px;
 }
+
+.login_word{
+    font-family: "Noto Sans KR", sans-serif;
+    font-style: normal;
+    font-weight: 800;
+    font-size: 24px;
+}
