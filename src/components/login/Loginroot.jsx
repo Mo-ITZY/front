@@ -17,6 +17,7 @@ const Loginroot = () => {
         loginId,
         password
       });
+      
       if (response.status === 200) {
         navigate('/main'); // 로그인 성공 시 이동할 페이지
       }

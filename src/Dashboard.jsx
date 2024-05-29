@@ -6,9 +6,9 @@ const Dashboard = () => {
   //const [user, setUser] = useState(null);
   const navigate = useNavigate();
 
-  useEffect(() => {
-    const fetchUserData = async () => {
-      try {
+  useEffect(() => { 
+    const fetchUserData = async () => { 
+      try { 
         const response = await axios.get('/api/user');
         setUser(response.data);
       } catch (error) {
