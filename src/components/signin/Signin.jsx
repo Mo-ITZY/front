@@ -49,12 +49,15 @@ const Signin = () => {
 
       if (response.ok) {
         console.log('Signup successful');
+        alert('회원가입이 완료되었습니다.')
       } else {
         console.log('Signup failed');
+        alert('회원가입이 실패되었습니다.')
       }
 
     } catch (error) {
       console.error('Error:', error);
+      alert('회원가입이 실패되었습니다.')
     }
   };
 
@@ -106,104 +109,106 @@ const Signin = () => {
     <div>
       <Header />
       <form onSubmit={handleSubmit}>
-        <div className={style.signin_word}>회원가입</div>
-        <div>
-          <div className={style.mark}>아이디</div>
-          <input
-            type="text"
-            name="loginId"
-            placeholder='아이디를 입력해주세요'
-            className={style.input_box}
-            value={formData.loginId}
-            onChange={handleChange}
-          />
-        </div>
-        <div>
-          <div className={style.mark}>이름</div>
-          <input
-            type="text"
-            name="name"
-            placeholder='이름을 입력해주세요'
-            className={style.input_box}
-            value={formData.name}
-            onChange={handleChange}
-          />
-        </div>
-        <div>
-          <div className={style.mark}>비밀번호</div>
-          <input
-            type="password"
-            name="password"
-            placeholder='비밀번호를 입력해주세요'
-            className={style.input_box}
-            value={formData.password}
-            onChange={handleChange}
-          />
-        </div>
-        <div>
-          <div className={style.mark}>이메일</div>
-          <input
-            type="text"
-            name="email"
-            placeholder='이메일를 입력해주세요'
-            className={style.input_box}
-            value={formData.email}
-            onChange={handleChange}
-          />
-        </div>
-        <div>
-          <div className={style.mark}>주소</div>
+        <div className={style.scroll}>
+          <div className={style.signin_word}>회원가입</div>
           <div>
-          <select
-                name="address.first"
-                className={style.input_box}
-                value={formData.address.first}
-                onChange={handleChange}
-              >
-                <option value="">도 선택</option>
-                <option value="부산광역시">부산광역시</option>
-              </select>
-          </div>
-          <div>
-              <select
-                name="address.second"
-                className={style.input_box}
-                value={formData.address.second}
-                onChange={handleChange}
-              >
-                <option value="">시, 군, 구 선택</option>
-                {getfirst(formData.address.first).map((first, index) => (
-                  <option key={index} value={first}>{first}</option>
-                ))}
-              </select>
-          </div>
-          <div>
-              <select
-                name="address.third"
-                className={style.input_box}
-                value={formData.address.third}
-                onChange={handleChange}
-              >
-                <option value="">동, 면, 읍 선택</option>
-                {getsecond(formData.address.second).map((second, index) => (
-                  <option key={index} value={second}>{second}</option>
-                ))}
-              </select>
-          </div>
-          <div>
+            <div className={style.mark}>아이디</div>
             <input
               type="text"
-              name="address.detail"
-              placeholder='상세주소를 입력해주세요'
+              name="loginId"
+              placeholder='아이디를 입력해주세요'
               className={style.input_box}
-              value={formData.address.detail}
+              value={formData.loginId}
               onChange={handleChange}
             />
           </div>
-        </div>
-        <div className={style.button_location}>
-          <button type="submit" className={style.button}>회원가입 완료</button>
-        </div>
+          <div>
+            <div className={style.mark}>이름</div>
+            <input
+              type="text"
+              name="name"
+              placeholder='이름을 입력해주세요'
+              className={style.input_box}
+              value={formData.name}
+              onChange={handleChange}
+            />
+          </div>
+          <div>
+            <div className={style.mark}>비밀번호</div>
+            <input
+              type="password"
+              name="password"
+              placeholder='비밀번호를 입력해주세요'
+              className={style.input_box}
+              value={formData.password}
+              onChange={handleChange}
+            />
+          </div>
+          <div>
+            <div className={style.mark}>이메일</div>
+            <input
+              type="text"
+              name="email"
+              placeholder='이메일를 입력해주세요'
+              className={style.input_box}
+              value={formData.email}
+              onChange={handleChange}
+            />
+          </div>
+          <div>
+            <div className={style.mark}>주소</div>
+            <div>
+            <select
+                  name="address.first"
+                  className={style.input_box}
+                  value={formData.address.first}
+                  onChange={handleChange}
+                >
+                  <option value="">도 선택</option>
+                  <option value="부산광역시">부산광역시</option>
+                </select>
+            </div>
+            <div>
+                <select
+                  name="address.second"
+                  className={style.input_box}
+                  value={formData.address.second}
+                  onChange={handleChange}
+                >
+                  <option value="">시, 군, 구 선택</option>
+                  {getfirst(formData.address.first).map((first, index) => (
+                    <option key={index} value={first}>{first}</option>
+                  ))}
+                </select>
+            </div>
+            <div>
+                <select
+                  name="address.third"
+                  className={style.input_box}
+                  value={formData.address.third}
+                  onChange={handleChange}
+                >
+                  <option value="">동, 면, 읍 선택</option>
+                  {getsecond(formData.address.second).map((second, index) => (
+                    <option key={index} value={second}>{second}</option>
+                  ))}
+                </select>
+            </div>
+            <div>
+              <input
+                type="text"
+                name="address.detail"
+                placeholder='상세주소를 입력해주세요'
+                className={style.input_box}
+                value={formData.address.detail}
+                onChange={handleChange}
+              />
+            </div>
+          </div>
+          <div className={style.button_location}>
+            <button type="submit" className={style.button}>회원가입 완료</button>
+          </div>
+        </div> 
       </form>
     </div>
   );
