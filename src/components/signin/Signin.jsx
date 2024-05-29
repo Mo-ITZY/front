@@ -2,8 +2,6 @@ import { useState } from 'react';
 import './Signin.module.css';
 import Header from '../header/header';
 import style from './Signin.module.css';
-import { useNavigate } from 'react-router-dom';
-import { toast, ToastContainer } from 'react-toastify';
 
 const Signin = () => {
   const [formData, setFormData] = useState({
@@ -12,23 +10,30 @@ const Signin = () => {
     password: '',
     email: '',
     address: {
-      province: '',
-      district: '',
-      subdistrict: ''
+      first: '',
+      second: '',
+      third: '',
+      detail: ''
     }
   });
 
-  const navigate = useNavigate();
-
   const handleChange = (e) => {
     const { name, value } = e.target;
-    setFormData({
-      ...formData,
-      address: {
-        ...formData.address,
+    if (name.includes('address.')) {
+      const addressKey = name.split('.')[1];
+      setFormData((prevData) => ({
+        ...prevData,
+        address: {
+          ...prevData.address,
+          [addressKey]: value
+        }
+      }));
+    } else {
+      setFormData({
+        ...formData,
         [name]: value
-      }
-    });
+      });
+    }
   };
 
   const handleSubmit = async (e) => {
@@ -43,20 +48,17 @@ const Signin = () => {
       });
 
       if (response.ok) {
-        toast.success('회원가입이 성공적으로 완료되었습니다.', {
-          onClose: () => navigate('/login')
-        });
+        console.log('Signup successful');
       } else {
-        toast.error('회원가입에 실패했습니다.');
+        console.log('Signup failed');
       }
 
     } catch (error) {
-      toast.error('회원가입에 실패했습니다.');
       console.error('Error:', error);
     }
   };
 
-  const getDistricts = (province) => {
+  const getfirst = (province) => {
     switch (province) {
       case '부산광역시':
         return ['강서구', '금정구', '남구', '동구', '동래구', '부산진구' ,'북구', '사상구', '사하구', '서구', '수영구', '연제구', '영도구', '중구', '해운대구'];
@@ -65,7 +67,7 @@ const Signin = () => {
     }
   };
 
-  const getSubdistricts = (district) => {
+  const getsecond = (district) => {
     switch (district) {
       case '강서구':
       return ['강동동', '명지동', '신호동', '연산동', '죽림동', '녹산동', '대저1동', '대저2동', '송정동', '구랑동', '기장읍', '정관읍', '철마면'];
@@ -104,108 +106,105 @@ const Signin = () => {
     <div>
       <Header />
       <form onSubmit={handleSubmit}>
-        <div className={style.scroll}>
-          <div className={style.signin_word}>회원가입</div>
+        <div className={style.signin_word}>회원가입</div>
+        <div>
+          <div className={style.mark}>아이디</div>
+          <input
+            type="text"
+            name="loginId"
+            placeholder='아이디를 입력해주세요'
+            className={style.input_box}
+            value={formData.loginId}
+            onChange={handleChange}
+          />
+        </div>
+        <div>
+          <div className={style.mark}>이름</div>
+          <input
+            type="text"
+            name="name"
+            placeholder='이름을 입력해주세요'
+            className={style.input_box}
+            value={formData.name}
+            onChange={handleChange}
+          />
+        </div>
+        <div>
+          <div className={style.mark}>비밀번호</div>
+          <input
+            type="password"
+            name="password"
+            placeholder='비밀번호를 입력해주세요'
+            className={style.input_box}
+            value={formData.password}
+            onChange={handleChange}
+          />
+        </div>
+        <div>
+          <div className={style.mark}>이메일</div>
+          <input
+            type="text"
+            name="email"
+            placeholder='이메일를 입력해주세요'
+            className={style.input_box}
+            value={formData.email}
+            onChange={handleChange}
+          />
+        </div>
+        <div>
+          <div className={style.mark}>주소</div>
           <div>
-            <div className={style.mark}>아이디</div>
-            <input
-              type="text"
-              name="loginId"
-              placeholder='아이디를 입력해주세요'
-              className={style.input_box}
-              value={formData.loginId}
-              onChange={handleChange}
-            />
-          </div>
-          <div>
-            <div className={style.mark}>이름</div>
-            <input
-              type="text"
-              name="name"
-              placeholder='이름을 입력해주세요'
-              className={style.input_box}
-              value={formData.name}
-              onChange={handleChange}
-            />
-          </div>
-          <div>
-            <div className={style.mark}>비밀번호</div>
-            <input
-              type="password"
-              name="password"
-              placeholder='비밀번호를 입력해주세요'
-              className={style.input_box}
-              value={formData.password}
-              onChange={handleChange}
-            />
-          </div>
-          <div>
-            <div className={style.mark}>이메일</div>
-            <input
-              type="text"
-              name="email"
-              placeholder='이메일을 입력해주세요'
-              className={style.input_box}
-              value={formData.email}
-              onChange={handleChange}
-            />
-          </div>
-          <div>
-            <div className={style.mark}>주소</div>
-            <div>
-              <select
-                name="province"
+          <select
+                name="address.first"
                 className={style.input_box}
-                value={formData.address.province}
+                value={formData.address.first}
                 onChange={handleChange}
               >
                 <option value="">도 선택</option>
                 <option value="부산광역시">부산광역시</option>
               </select>
-            </div>
-            <div>
+          </div>
+          <div>
               <select
-                name="district"
+                name="address.second"
                 className={style.input_box}
-                value={formData.address.district}
+                value={formData.address.second}
                 onChange={handleChange}
               >
                 <option value="">시, 군, 구 선택</option>
-                {getDistricts(formData.address.province).map((district, index) => (
-                  <option key={index} value={district}>{district}</option>
+                {getfirst(formData.address.first).map((first, index) => (
+                  <option key={index} value={first}>{first}</option>
                 ))}
               </select>
-            </div>
-            <div>
+          </div>
+          <div>
               <select
-                name="subdistrict"
+                name="address.third"
                 className={style.input_box}
-                value={formData.address.subdistrict}
+                value={formData.address.third}
                 onChange={handleChange}
               >
                 <option value="">동, 면, 읍 선택</option>
-                {getSubdistricts(formData.address.district).map((subdistrict, index) => (
-                  <option key={index} value={subdistrict}>{subdistrict}</option>
+                {getsecond(formData.address.second).map((second, index) => (
+                  <option key={index} value={second}>{second}</option>
                 ))}
               </select>
-            </div>
-            <div>
-             <input
+          </div>
+          <div>
+            <input
               type="text"
               name="address.detail"
               placeholder='상세주소를 입력해주세요'
               className={style.input_box}
               value={formData.address.detail}
               onChange={handleChange}
-          />
-            </div>
-          </div>
-          <div className={style.button_location}>
-            <button type="submit" className={style.button}>회원가입 완료</button>
+            />
           </div>
         </div>
+        <div className={style.button_location}>
+          <button type="submit" className={style.button}>회원가입 완료</button>
+        </div>
       </form>
-      <ToastContainer />
     </div>
   );
 };
