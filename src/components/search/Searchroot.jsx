@@ -1,19 +1,27 @@
+import React, { useState } from 'react';
 import { NavLink } from 'react-router-dom';
 import styles from './Searchroot.module.css';
 
-
 function Search() {
-  return ( 
+  const [searchTerm, setSearchTerm] = useState('');
+
+  const handleInputChange = (event) => {
+    setSearchTerm(event.target.value);
+  };
+
+  return (
     <div className={styles.Container}>
       <div className={styles.Search_Container}>
-        <div className={styles.Box}>
-          <div className={styles.Search_Text}>
-            검색어를 입력해주세요
-          </div>
-        </div>
+        <input
+          type="text"
+          value={searchTerm}
+          onChange={handleInputChange}
+          placeholder="검색어를 입력해주세요"
+          className={styles.Search_Input}
+        />
       </div>
       
-      <div class={styles.Horizon_Line}></div>
+      <div className={styles.Horizon_Line}></div>
 
       <div className={styles.RecentSearch_Container}>
         <div className={styles.RecentSearch_Text}>
@@ -24,24 +32,24 @@ function Search() {
       <div className={styles.City_Container}>
         <div className={styles.City_Box}>
           <NavLink>
-          <div className={styles.City_Name}>
-            전체
-          </div>
+            <div className={styles.City_Name}>
+              전체
+            </div>
           </NavLink>
           <NavLink>
-          <div className={styles.City_Name}>
-            강원
-          </div>
+            <div className={styles.City_Name}>
+              강원
+            </div>
           </NavLink>
           <NavLink>
-          <div className={styles.City_Name}>
-            경기
-          </div>
+            <div className={styles.City_Name}>
+              경기
+            </div>
           </NavLink>
           <NavLink>
-          <div className={styles.City_Name}>
-            경북
-          </div>
+            <div className={styles.City_Name}>
+              경북
+            </div>
           </NavLink>
         </div>
         <div className={styles.City_Box}>
@@ -78,37 +86,37 @@ function Search() {
             </div>
           </NavLink>
           <NavLink>
-          <div className={styles.City_Name}>
-            울산
-          </div>
+            <div className={styles.City_Name}>
+              울산
+            </div>
           </NavLink>
           <NavLink>
-          <div className={styles.City_Name}>
-            인천
-          </div>
+            <div className={styles.City_Name}>
+              인천
+            </div>
           </NavLink>
         </div>
         <div className={styles.City_Box}>
           <NavLink>
-          <div className={styles.City_Name}>
-            제주
-          </div>
+            <div className={styles.City_Name}>
+              제주
+            </div>
           </NavLink>
           <NavLink>
-          <div className={styles.City_Name}>
-            충북
-          </div>
+            <div className={styles.City_Name}>
+              충북
+            </div>
           </NavLink>
           <NavLink>
-          <div className={styles.City_Name}>
-            충남
-          </div>
+            <div className={styles.City_Name}>
+              충남
+            </div>
           </NavLink>
           <div className={styles.City_Name_Dummy}></div>
         </div>
       </div>
     </div>
-  )
+  );
 }
 
-export default Search
+export default Search;
