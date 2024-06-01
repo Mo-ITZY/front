@@ -5,13 +5,12 @@ import { NavLink } from "react-router-dom";
 
 function ALLroot() {
   const [datas, setDatas] = useState([]);
-  const [currentPage, setCurrentPage] = useState(1);
-  const itemsPerPage = 10; // 한 페이지에 표시할 데이터 수
+  const [pageNo, setPageNo] = useState(1);
 
   useEffect(() => {
-    const fetchDataFromAPI = async (page) => {
+    const fetchDataFromAPI = async () => {
       try {
-        const result = await fetchData(page, itemsPerPage);
+        const result = await fetchData(pageNo);
         console.log("Datas Updated:", result.getFestivalKr);
         setDatas(result.getFestivalKr?.item || []);
       } catch (error) {
@@ -20,49 +19,27 @@ function ALLroot() {
     };
 
     fetchDataFromAPI();
-  }, [currentPage]);
+  }, [pageNo]); // 페이지 번호가 변경될 때마다 데이터를 다시 가져옵니다.
 
-  // 현재 페이지에 맞는 데이터 계산
-  const indexOfLastItem = currentPage * itemsPerPage;
-  const indexOfFirstItem = indexOfLastItem - itemsPerPage;
-  const currentItems = datas.slice(indexOfFirstItem, indexOfLastItem);
-
-  // 페이지 수 계산
-  const totalPages = Math.ceil(datas.length / itemsPerPage);
-
-  // 표시할 페이지 번호 계산
-  const getPageNumbers = () => {
-    const pageNumbers = [];
-    const maxPageButtons = 10;
-    const halfMaxPageButtons = Math.floor(maxPageButtons / 2);
-    let startPage = Math.max(1, currentPage - halfMaxPageButtons);
-    let endPage = startPage + maxPageButtons - 1;
-
-    if (endPage > totalPages) {
-      endPage = totalPages;
-      startPage = Math.max(1, endPage - maxPageButtons + 1);
+  const handleNextPage = () => {
+    if(pageNo < 8) {
+      setPageNo(prevPageNo => prevPageNo + 1);
     }
-
-    for (let i = startPage; i <= endPage; i++) {
-      pageNumbers.push(i);
-    }
-
-    return pageNumbers;
   };
 
-  // 페이지 변경 핸들러
-  const handleClick = (event, pageNumber) => {
-    event.preventDefault();
-    setCurrentPage(pageNumber);
+  const handlePrevPage = () => {
+    if (pageNo > 1) {
+      setPageNo(prevPageNo => prevPageNo - 1);
+    }
   };
 
   return (
-    <div>
-      <div className={styles.aa}>
-        {currentItems.map((data, idx) => (
+    <div className={styles.scroll}>
+      <div>
+        {datas.map((data, idx) => (
           <div key={idx} className={styles.box11}>
             <NavLink to={`/allrootview/${data.UC_SEQ}`} className={styles.navLink}>
-              <img src={data.MAIN_IMG_THUMB} className={styles.img_size} alt="thumbnail" />
+              <img src={data.MAIN_IMG_THUMB} className={styles.img_size} alt={data.SUBTITLE} />
               <div>
                 <p>{data.SUBTITLE}</p>
                 <p>{data.PLACE}</p>
@@ -72,12 +49,10 @@ function ALLroot() {
           </div>
         ))}
       </div>
-      <div className={styles.pagination}>
-        {getPageNumbers().map(number => (
-          <button key={number} onClick={(e) => handleClick(e, number)} className={styles.pageButton}>
-            {number}
-          </button>
-        ))}
+      <div>
+        <button onClick={handlePrevPage} disabled={pageNo === 1} className={styles.before_button}>이전</button>
+        <span className={styles.page_word}>{pageNo} / 8</span>
+        <button onClick={handleNextPage} disabled={pageNo === 8} className={styles.next_button}>다음</button>
       </div>
     </div>
   );
