@@ -1,6 +1,7 @@
 ﻿//import styles from './allrootview.module.css';
 import Header from '../../header/header';
-import Detail from './detail/detail'
+import Detail from './detail/detail';
+import Review from './review/review';
 
 
 function AllRootView() {
@@ -9,6 +10,7 @@ function AllRootView() {
     <div>
       <Header />
       <Detail />
+      <Review />
     </div>
   );
 }
