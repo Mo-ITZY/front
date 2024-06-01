@@ -13,7 +13,8 @@
     cursor: pointer;
 }
 .aa {
-    margin-top: 200px;
+    margin-top: 50px;
+    margin-bottom: 50px;
 }
 .img_size{
     width: 90px;
@@ -39,3 +40,8 @@
     margin-left: 24px;
     margin-right: 24px;
 }
+
+.pagination{
+    color: black;
+    margin-bottom: 50px;
+} 

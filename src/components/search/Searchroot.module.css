@@ -1,6 +1,4 @@
 .Container {
-  /* margin-top: 10px;
-  margin-left: 10px; */
   align-items:flex-start; 
   width: 350px;
   height: 900px;
@@ -11,23 +9,13 @@
   justify-content: center;
 }
 
-.Box {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  width: 250px;
-  height: 50px;
-  color: #ffffff;
+.Search_Input {
+  width: 350px;
+  height: 30px;
+  padding: 8px;
+  background-color: transparent;
   border-radius: 10px; 
-  outline: solid 1px gray;
-  /* cursor: pointer; */
-}
-
-.Search_Text {
-  font-size: 20px;
-  font-weight: 300;
-  color: gray;
-  font-family: "Noto Sans KR", sans-serif;
+  outline: solid 1px white;
 }
 
 .Horizon_Line {
@@ -51,7 +39,7 @@
 }
 
 .City_Container {
-  margin-top: 200px;
+  margin-top: 100px;
   height: 400px;
   /* display: flex; */
   background-color: grey;

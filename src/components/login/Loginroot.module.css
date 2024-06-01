@@ -32,7 +32,7 @@
 }
 
 .err_message {
-  color: rgb(246, 255, 0);
+  color: black;
   font-size: 18px;
   margin-top: 20px;
 }

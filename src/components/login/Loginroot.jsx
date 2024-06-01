@@ -23,7 +23,7 @@ const Loginroot = () => {
       }
     } catch (error) {
       if (error.response && error.response.status === 401) {
-        setErrorMessage('아이디/비밀번호가 일치하지 않습니다.');
+        alert('아이디 비밀번호가 일치하지 않습니다.')
       } else {
         console.error('Login failed:', error);
         setErrorMessage('An unexpected error occurred');
