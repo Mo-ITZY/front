@@ -1,16 +1,19 @@
 ﻿import styles from './Profileroot.module.css';
-import { NavLink } from "react-router-dom";
+import Mainprofile from './mainprofile/mainprofile';
 import Header from '../header/header';
+import Noticebox from './notice_box/noticebox';
 
-function Mainroot() {
+function profileroot() {
   return (
     <div>
-        <Header />
-        <NavLink to='/profile'>
-          <div className={styles.Look_Around_Box}>프로필</div>
-        </NavLink>
+        <div className={styles.scroll}>
+          <Header />
+          <Mainprofile />
+          <Noticebox />
+          <div className={styles.secession}>회원 탈퇴</div>
+        </div>
     </div>
   )
 }
 
-export default Mainroot
+export default profileroot
