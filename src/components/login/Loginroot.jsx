@@ -1,4 +1,4 @@
-﻿import { useState } from 'react';
+import { useState } from 'react';
 import axios from 'axios';
 import { NavLink, useNavigate } from 'react-router-dom';
 import styles from "./Loginroot.module.css";
@@ -26,7 +26,7 @@ const Loginroot = () => {
         alert('아이디 비밀번호가 일치하지 않습니다.')
       } else {
         console.error('Login failed:', error);
-        setErrorMessage('An unexpected error occurred');
+        setErrorMessage('로그인 실패');
       }
     }
   };

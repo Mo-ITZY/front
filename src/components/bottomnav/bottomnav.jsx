@@ -41,7 +41,7 @@ function Bottomnav() {
         style: location.pathname === "/search" ? "" : styles.emt_font,
       },
       {
-        path: "/all",
+        path: "/allroot",
         icon: (
           <div>
             {['/main', '/search', '/like', '/profile'].includes(location.pathname) ? (
