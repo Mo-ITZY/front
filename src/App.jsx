@@ -12,6 +12,7 @@ import Signin from './components/signin/Signin';
 import Review from './components/review/Reviewroot';
 import { useMediaQuery } from "react-responsive";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import ALLroot from './components/all/allroot';
 
 // PrivateRoute 컴포넌트를 위한 파일에서 import
 //import PrivateRoute from './PrivateRoute';
@@ -51,7 +52,7 @@ import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
           <Route path="/" element={isPC ? <Intro /> : isMobile && <Intro />} />
           <Route path="/main" element={isPC ? <Main /> : isMobile && <Main />} />
           <Route path="/login" element={isPC ? <Login /> : isMobile && <Login />} />
-          <Route path="/all" element={isPC ? <All /> : isMobile && <All />} />
+          <Route path="/allroot" element={isPC ? <ALLroot /> : isMobile && <ALLroot />} />
           <Route path="/allrootview/:id" element={isPC ? <AllRootView /> : isMobile && <AllRootView />} />
           <Route path="/search" element={isPC ? <Search /> : isMobile && <Search />} />
           <Route path="/profile" element={isPC ? <Profile /> : isMobile && <Profile />} />
