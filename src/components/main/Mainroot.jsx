@@ -9,7 +9,7 @@ function Mainroot() {
   const [error, setError] = useState(null);
 
   useEffect(() => {
-    axios.get('/api/main')
+    axios.get('http://localhost:8080/mo-itzy/main')
       .then(response => {
         setInform(response.data);
       })
