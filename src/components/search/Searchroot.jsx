@@ -1,6 +1,7 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import styles from './Searchroot.module.css';
+import { MdOutlineSearch } from "react-icons/md";
 
 function Search() {
   const [searchData, setSearchData] = useState({
@@ -32,7 +33,7 @@ function Search() {
           className={styles.Search_Input}
         />
         <button onClick={handleSearch} className={styles.Search_Button}>
-          검색
+          <MdOutlineSearch />
         </button>
       </div>
       <div className={styles.Horizon_Line}></div>
