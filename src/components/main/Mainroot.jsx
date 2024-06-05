@@ -36,7 +36,7 @@ function Mainroot() {
         ) : (
           <ul>
             {Inform.map(Inform => (
-              <li key={Inform.inform_id}>
+              <li key={Inform.id}>
                 <h3>{Inform.title}</h3>
                 <p>{Inform.content}</p> 
               </li>
