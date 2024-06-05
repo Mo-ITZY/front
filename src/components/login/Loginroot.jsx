@@ -1,4 +1,4 @@
-import { useState } from 'react';
+﻿import { useState } from 'react';
 import axios from 'axios';
 import { NavLink, useNavigate } from 'react-router-dom';
 import styles from "./Loginroot.module.css";
@@ -13,20 +13,24 @@ const Loginroot = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      const response = await axios.post('http://localhost:8080/mo-itzy/login', { // 프록시 설정을 통해 요청이 백엔드로 전달되도록 수정
+      const response = await axios.post('http://localhost:8080/mo-itzy/login', {
         loginId,
         password
+      }, {
+        withCredentials: true // 쿠키를 포함하여 요청
       });
-      
-      if (response.status === 200) {
+
+      if (response.data.status === 'success') {
         navigate('/main'); // 로그인 성공 시 이동할 페이지
+      } else {
+        setErrorMessage(response.data.message);
       }
     } catch (error) {
       if (error.response && error.response.status === 401) {
-        alert('아이디 비밀번호가 일치하지 않습니다.')
+        setErrorMessage('아이디 또는 비밀번호가 일치하지 않습니다.');
       } else {
         console.error('Login failed:', error);
-        setErrorMessage('로그인 실패');
+        setErrorMessage('로그인 실패. 잠시 후 다시 시도해주세요.');
       }
     }
   };
@@ -37,15 +41,28 @@ const Loginroot = () => {
       <form onSubmit={handleSubmit}>
         <div className={styles.login_word}>로그인</div>
         <div>
-          <input type="text" value={loginId} placeholder='아이디를 입력해주세요'  onChange={(e) => setLoginId(e.target.value)} className={styles.input_box} />
+          <input 
+            type="text" 
+            value={loginId} 
+            placeholder='아이디를 입력해주세요'  
+            onChange={(e) => setLoginId(e.target.value)} 
+            className={styles.input_box} 
+          />
         </div>
         <div>
-          <input type="password" value={password} placeholder='비밀번호를 입력해주세요' onChange={(e) => setPassword(e.target.value)} className={styles.input_box} />
+          <input 
+            type="password" 
+            value={password} 
+            placeholder='비밀번호를 입력해주세요' 
+            onChange={(e) => setPassword(e.target.value)} 
+            className={styles.input_box} 
+          />
         </div>
-        
         <div className={styles.button_location}>
-          <div><button type="submit" className={styles.button}>로그인</button></div>
-          <NavLink to = '../signin'>
+          <div>
+            <button type="submit" className={styles.button}>로그인</button>
+          </div>
+          <NavLink to='../signin'>
             <div className={styles.button}>회원가입</div>
           </NavLink>
         </div>
@@ -56,4 +73,3 @@ const Loginroot = () => {
 };
 
 export default Loginroot;
-
