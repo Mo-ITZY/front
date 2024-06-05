@@ -13,7 +13,7 @@ const Loginroot = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      const response = await axios.post('/api/login', { // 프록시 설정을 통해 요청이 백엔드로 전달되도록 수정
+      const response = await axios.post('http://localhost:8080/mo-itzy/login', { // 프록시 설정을 통해 요청이 백엔드로 전달되도록 수정
         loginId,
         password
       });
