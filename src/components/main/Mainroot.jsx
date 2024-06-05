@@ -15,12 +15,12 @@ function Mainroot() {
       })
       .catch(error => {
         if (error.response && error.response.status === 500) {
-          setInform([]); // 에러 발생 시 공지사항이 없다고 가정
+          setInform([]); // 에러 발생 시 공지사항이 없도록 표시
         } else {
           setError(error);
         }
       });
-  }, []);
+  }, []); 
 
   if (error) {
     return <div>Error: {error.message}</div>;
