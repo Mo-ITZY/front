@@ -37,14 +37,6 @@ function ALLroot() {
               id,
               name = "이름 정보 없음",
               img = "/placeholder.jpg",
-              lat = "위도 정보 없음",
-              lng = "경도 정보 없음",
-              trafficInfo = "교통 정보 없음",
-              expense = "비용 정보 없음",
-              contact = "연락처 정보 없음",
-              homepage = "#",
-              description = "설명 없음",
-              facilities = "편의 시설 정보 없음",
               place = {},
               period = {}
             } = data;
@@ -59,14 +51,6 @@ function ALLroot() {
                   <img src={img} className={styles.img_size} alt={name} />
                   <div>
                     <p>축제 이름: {name}</p>
-                    <p>위도: {lat}</p>
-                    <p>경도: {lng}</p>
-                    <p>교통 정보: {trafficInfo}</p>
-                    <p>비용: {expense}</p>
-                    <p>연락처: {contact}</p>
-                    <p>홈페이지: <a href={homepage} target="_blank" rel="noopener noreferrer">{homepage}</a></p>
-                    <p>설명: {description}</p>
-                    <p>편의 시설: {facilities}</p>
                     <p>장소: {first} {second} {third} {detail}</p>
                     <p>기간: {startDate} - {endDate}</p>
                   </div>

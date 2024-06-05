@@ -1,7 +1,7 @@
 ﻿import styles from './Mainroot.module.css';
 import { NavLink } from "react-router-dom";
 import Header from '../header/header';
-import React, { useEffect, useState } from 'react';
+import { useEffect, useState } from 'react';
 import axios from 'axios';
 
 function Mainroot() {

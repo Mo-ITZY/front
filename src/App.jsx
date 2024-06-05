@@ -2,7 +2,6 @@ import './App.css';
 import Intro from './components/Intro/Introroot';
 import Main from './components/main/Mainroot';
 import Login from './components/login/Loginroot';
-import All from './components/all/allroot';
 import Search from './components/search/Searchroot';
 import Bottomnav from './components/bottomnav/bottomnav';
 import Profile from './components/profile/Profileroot'
