@@ -1,59 +1,54 @@
-﻿import { useState } from 'react';
-import axios from 'axios';
-import { NavLink, useNavigate } from 'react-router-dom';
-import styles from "./Loginroot.module.css";
+﻿import styles from './Mainroot.module.css';
+import { NavLink } from "react-router-dom";
 import Header from '../header/header';
+import React, { useEffect, useState } from 'react';
+import axios from 'axios';
 
-const Loginroot = () => {
-  const [loginId, setLoginId] = useState('');
-  const [password, setPassword] = useState('');
-  const [errorMessage, setErrorMessage] = useState('');
-  const navigate = useNavigate();
+function Mainroot() {
+  const [Inform, setInform] = useState([]);
+  const [error, setError] = useState(null);
 
-  const handleSubmit = async (e) => {
-    e.preventDefault();
-    try {
-      const response = await axios.post('http://localhost:8080/mo-itzy/login', { // 프록시 설정을 통해 요청이 백엔드로 전달되도록 수정
-        loginId,
-        password
+  useEffect(() => {
+    axios.get('http://localhost:8080/mo-itzy/main')
+      .then(response => {
+        setInform(response.data);
+      })
+      .catch(error => {
+        if (error.response && error.response.status === 500) {
+          setInform([]); // 에러 발생 시 공지사항이 없도록 표시
+        } else {
+          setError(error);
+        }
       });
-      
-      if (response.status === 200) {
-        navigate('/main'); // 로그인 성공 시 이동할 페이지
-      }
-    } catch (error) {
-      if (error.response && error.response.status === 401) {
-        alert('아이디 비밀번호가 일치하지 않습니다.')
-      } else {
-        console.error('Login failed:', error);
-        setErrorMessage('로그인 실패');
-      }
-    }
-  };
+  }, []); 
+
+  if (error) {
+    return <div>Error: {error.message}</div>;
+  }
 
   return (
     <div>
       <Header />
-      <form onSubmit={handleSubmit}>
-        <div className={styles.login_word}>로그인</div>
-        <div>
-          <input type="text" value={loginId} placeholder='아이디를 입력해주세요'  onChange={(e) => setLoginId(e.target.value)} className={styles.input_box} />
-        </div>
-        <div>
-          <input type="password" value={password} placeholder='비밀번호를 입력해주세요' onChange={(e) => setPassword(e.target.value)} className={styles.input_box} />
-        </div>
-        
-        <div className={styles.button_location}>
-          <div><button type="submit" className={styles.button}>로그인</button></div>
-          <NavLink to = '../signin'>
-            <div className={styles.button}>회원가입</div>
-          </NavLink>
-        </div>
-      </form>
-      {errorMessage && <div className={styles.err_message}>{errorMessage}</div>}
+      <div className={styles.Inform_Container}>
+        <h2>공지사항</h2>
+        {Inform.length === 0 ? (
+          <div>공지사항이 없습니다.</div>
+        ) : (
+          <ul>
+            {Inform.map(Inform => (
+              <li key={Inform.inform_id}>
+                <h3>{Inform.title}</h3>
+                <p>{Inform.content}</p> 
+              </li>
+            ))}
+          </ul>
+        )}
+      </div>
+      <NavLink to='/all'>
+        <div className={styles.Look_Around_Box}>각 지역축제 더보기</div>
+      </NavLink>
     </div>
-  );
-};
+  )
+}
 
-export default Loginroot;
-
+export default Mainroot
