@@ -35,10 +35,11 @@ function Mainroot() {
           <div>공지사항이 없습니다.</div>
         ) : (
           <ul>
-            {Inform.map(Inform => (
-              <li key={Inform.id}>
-                <h3>{Inform.title}</h3>
-                <p>{Inform.content}</p> 
+            {Inform.map(item => (
+              <li key={item.id}>
+                <h3>{item.title}</h3>
+                <p>{item.content}</p> 
+                <p>{item.writeDate}</p> 
               </li>
             ))}
           </ul>
