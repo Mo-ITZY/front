@@ -9,12 +9,11 @@ function ALLroot() {
   const searchData = location.state || { keyword: '', page: 0, size: 10 };
 
   const [pageNo, setPageNo] = useState(searchData.page);
-  const [keyword, setKeyword] = useState(searchData.keyword);
 
   useEffect(() => {
     const fetchDataFromAPI = async () => {
       try {
-        const response = await axios.post('http://localhost:8080/mo-itzy/festivals', { keyword, page: pageNo, size: 10 });
+        const response = await axios.post('http://localhost:8080/mo-itzy/festivals', { keyword: searchData.keyword, page: pageNo, size: 10 });
         console.log("Fetched data:", response.data.content); // 콘솔에 데이터 출력
         setDatas(response.data.content || []);
       } catch (error) {
@@ -23,7 +22,7 @@ function ALLroot() {
     };
 
     fetchDataFromAPI();
-  }, [keyword, pageNo]);
+  }, [searchData.keyword, pageNo]);
 
   return (
     <div className={styles.scroll}>
