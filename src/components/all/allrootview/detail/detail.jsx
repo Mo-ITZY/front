@@ -3,7 +3,7 @@ import { useParams } from 'react-router-dom';
 import axios from 'axios';  // axios 임포트
 import styles from './detail.module.css';
 
-function Detail() {  // 컴포넌트 이름을 PascalCase로 변경
+function Detail() {
   const { id } = useParams();
   const [items, setData] = useState('');
 
@@ -24,7 +24,7 @@ function Detail() {  // 컴포넌트 이름을 PascalCase로 변경
       }
     };
 
-    fetchAllPages();
+    fetchDataFromAPI();
   }, [id]);
 
   if (!items) {

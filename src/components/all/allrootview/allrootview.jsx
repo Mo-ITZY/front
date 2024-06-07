@@ -1,8 +1,6 @@
-﻿//import styles from './allrootview.module.css';
-import Header from '../../header/header';
+﻿import Header from '../../header/header';
 import Detail from './detail/detail';
 import Review from './review/review';
-
 
 function AllRootView() {
 
