@@ -1,50 +1,60 @@
-﻿import { useEffect, useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import axios from 'axios';
 import styles from './detail.module.css';
 
 function Detail() {
   const { id } = useParams();
-  const [data, setData] = useState(null);
+  const [items, setData] = useState('');
 
   useEffect(() => {
-    const fetchDataFromAPI = async () => {
+    const fetchAllPages = async () => {
+      console.log("Fetching data for id:", id);
+
       try {
-        const response = await axios.get(`http://localhost:8080/mo-itzy/festival/${id}`);
-        setData(response.data);
-        console.log("Fetched data:", response.data); // 콘솔에 데이터 출력
+        const response = await axios.get(`http://localhost:8080/mo-itzy/festivals/${id}`);
+        console.log("Response:", response);
+        console.log("setData:", response.data); // 콘솔에 데이터 출력
+        const items = response.data;
+        console.log("items data:", items);
+        setData(items);
+        console.log("set items data:", items);
       } catch (error) {
-        console.error("Error fetching festival detail:", error);
+        console.error("Error:", error);
       }
     };
 
     fetchDataFromAPI();
   }, [id]);
 
-  if (!data) {
+  if (!items) {
     return <div>로딩중</div>;
   }
+
+  console.log("For return Items!!!!!!!!!!!:", items)
+
 
   return (
     <div>
       <div className={styles.main_content}>
-        <div className={styles.main_title}>{data.name}</div>
-        <img src={data.img || '/placeholder.jpg'} className={styles.main_img} alt={data.name} />
+        <div className={styles.main_title}>{items.name}</div>
+        <img src={items.img} className={styles.main_img} alt={items.img} />
         <div>
           <div className={styles.main_content_name}>축제 이름</div>
-          <div>{data.name}</div>
+          <div>{items.name}</div>
         </div>
         <div>
           <div className={styles.main_content_name}>축제 장소</div>
-          <div>{data.place.first} {data.place.second} {data.place.third} {data.place.detail}</div>
+          <div>{items.place.first}</div>
+          <div>{items.place.second}</div>
         </div>
         <div>
           <div className={styles.main_content_name}>축제 운영 기간</div>
-          <div>{data.period.startDate} - {data.period.endDate}</div>
+          <div>{items.description}</div>
         </div>
         <div>
           <div className={styles.main_content_name}>관련 홈페이지</div>
-          <div>{data.homepage}</div>
+          <div>{items.contact}</div>
         </div>
       </div>
     </div>
