@@ -1,0 +1,22 @@
+﻿.header_location{
+    display: flex;
+    align-items: center;
+    position: fixed;
+    width: 100%;
+    border-bottom: solid 1px #000000;
+    top: 0px;
+    left: 0;
+    padding-top: 10px;
+    background-color: white;
+}
+.icon{
+    margin-right: 5%;
+    font-size: 30px;
+    padding-top: 5px;
+}
+.title{
+    font-family: "Noto Sans KR", sans-serif;
+    font-style: normal;
+    font-weight: 500;
+    font-size: 20px;
+}

@@ -2,11 +2,12 @@
 import { useEffect, useState } from "react";
 import axios from "axios";
 import { useLocation, NavLink } from "react-router-dom";
+import Allroot_header from "./allroot_header/allroot_header";
 
 function ALLroot() {
   const [datas, setDatas] = useState([]);
   const location = useLocation();
-  const searchData = location.state || { keyword: '', page: 0, size: 10 };
+  const searchData = location.state || { keyword: '', page: 0, size: 5 };
 
   const [pageNo, setPageNo] = useState(searchData.page);
 
@@ -14,8 +15,9 @@ function ALLroot() {
     const fetchDataFromAPI = async () => {
       try {
         const response = await axios.post('http://localhost:8080/mo-itzy/festivals', { keyword: searchData.keyword, page: pageNo, size: 10 });
-        console.log("Fetched data:", response.data.content); // 콘솔에 데이터 출력
-        setDatas(response.data.content || []);
+        console.log("데이터 셋~", response.data.data.content); // 콘솔에 데이터 출력
+        // console.log("Fetched data:", response.data.content); // 콘솔에 데이터 출력
+        setDatas(response.data.data.content || []);
       } catch (error) {
         console.error("Error fetching festivals:", error);
       }
@@ -26,6 +28,7 @@ function ALLroot() {
 
   return (
     <div className={styles.scroll}>
+      <Allroot_header keyword={searchData.keyword} />
       <div>
         {datas.length === 0 ? (
           <p>데이터가 없습니다.</p>
@@ -46,7 +49,7 @@ function ALLroot() {
 
             return (
               <div key={id} className={styles.box11}>
-                <NavLink to={`/allrootview/${id}`} className={styles.navLink}>
+                <NavLink to={`/allrootview/${id}`} state={{id, name, img, place: {first, second, third, detail}}} className={styles.navLink}>
                   <img src={img} className={styles.img_size} alt={name} />
                   <div>
                     <p>축제 이름: {name}</p>

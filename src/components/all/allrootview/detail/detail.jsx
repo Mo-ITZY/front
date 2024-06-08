@@ -1,37 +1,25 @@
-﻿import React, { useEffect, useState } from 'react';
-import { useParams } from 'react-router-dom';
+﻿import { useEffect, useState } from 'react';
+import { useParams, useLocation } from 'react-router-dom';
 import axios from 'axios';  // axios 임포트
 import styles from './detail.module.css';
 
 function Detail() {
   const { id } = useParams();
-  const [items, setData] = useState('');
+  const location = useLocation();
+  const [items, setData] = useState(location.state || null);
 
   useEffect(() => {
-    const fetchAllPages = async () => {
-      console.log("Fetching data for id:", id);
 
-      try {
-        const response = await axios.get(`http://localhost:8080/mo-itzy/festivals/${id}`);
-        console.log("Response:", response);
-        console.log("setData:", response.data); // 콘솔에 데이터 출력
-        const items = response.data;
-        console.log("items data:", items);
-        setData(items);
-        console.log("set items data:", items);
-      } catch (error) {
-        console.error("Error:", error);
-      }
-    };
-
-    fetchDataFromAPI();
+    if (!items) {
+      console.error("아이템 이상:", id);
+    }
   }, [id]);
 
   if (!items) {
     return <div>로딩중</div>;
   }
 
-  console.log("For return Items!!!!!!!!!!!:", items)
+  console.log("아이템!!!!!!!!!!!:", items)
 
 
   return (
