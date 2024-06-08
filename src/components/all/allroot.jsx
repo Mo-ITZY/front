@@ -46,7 +46,7 @@ function ALLroot() {
 
             return (
               <div key={id} className={styles.box11}>
-                <NavLink to={`/allrootview/${id}`} className={styles.navLink}>
+                <NavLink to={`/allrootview/${id}`} state={data} className={styles.navLink}>
                   <img src={img} className={styles.img_size} alt={name} />
                   <div>
                     <p>축제 이름: {name}</p>
