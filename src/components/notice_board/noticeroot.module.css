@@ -1,21 +1,21 @@
 ﻿@import url("https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@100;200;300;400;500;600;700;800;900&display=swap");
 
 .scroll {
-    padding-top: 20px; /* 패딩을 20px로 수정 */
-    padding-bottom: 20px; /* 패딩을 20px로 수정 */
-    overflow-y: auto; /* 수직 스크롤을 가능하게 함 */
-    height: calc(100vh - 100px); /* 화면 높이에서 헤더 높이를 뺀 값 설정 */
-    box-sizing: border-box; /* padding과 border를 height에 포함 */
+    padding-top: 20px;
+    padding-bottom: 20px; 
+    overflow-y: auto; 
+    height: calc(100vh - 100px); 
+    box-sizing: border-box; 
     position: relative;
 }
 
 .Inform_Container {
-    padding-top: 100px; /* 헤더의 높이만큼 여백 추가 */
+    padding-top: 100px; 
     position: fixed;
-    top: 0; /* 화면 상단에 고정 */
-    left: 0; /* 왼쪽에 고정 */
-    width: 100%; /* 컨테이너가 화면의 전체 너비를 차지하도록 설정 */
-    box-sizing: border-box; /* padding과 border를 width에 포함 */
+    top: 0; 
+    left: 0;
+    width: 100%; 
+    box-sizing: border-box;
 }
 
 .title {
@@ -23,13 +23,13 @@
     font-style: normal;
     font-weight: 800;
     font-size: 30px;
-    margin-bottom: 20px; /* 마진 바텀을 픽셀 단위로 수정 */
+    margin-bottom: 20px;
 }
 
 .main_line {
     border-bottom: 1px solid #dedede;
     margin-top: 20px;
-    width: 100%; /* 화면의 전체 너비를 차지하도록 설정 */
+    width: 100%; 
     margin-bottom: 20px;
 }
 

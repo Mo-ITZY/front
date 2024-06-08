@@ -2,11 +2,12 @@
 import { useEffect, useState } from "react";
 import axios from "axios";
 import { useLocation, NavLink } from "react-router-dom";
+import Allroot_header from "./allroot_header/allroot_header";
 
 function ALLroot() {
   const [datas, setDatas] = useState([]);
   const location = useLocation();
-  const searchData = location.state || { keyword: '', page: 0, size: 10 };
+  const searchData = location.state || { keyword: '', page: 0, size: 5 };
 
   const [pageNo, setPageNo] = useState(searchData.page);
 
@@ -26,6 +27,7 @@ function ALLroot() {
 
   return (
     <div className={styles.scroll}>
+      <Allroot_header keyword={searchData.keyword} />
       <div>
         {datas.length === 0 ? (
           <p>데이터가 없습니다.</p>

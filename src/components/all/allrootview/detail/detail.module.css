@@ -1,23 +1,30 @@
 ﻿@import url("https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@100;200;300;400;500;600;700;800;900&display=swap");
 
-.main_img{
+.main_img {
     position: relative;
     margin-top: 40px;
     width: 95%;
 }
-.main_content{
+
+.main_content {
+    padding-top: 5%;
     position: fixed;
-    top: 155px;
+    top: 85px;
     left: 25px;
     text-align: left;
+    padding-right: 5%;
+    overflow-y: auto; /* 수직 스크롤 추가 */
+    max-height: calc(100vh - 155px); /* 화면 높이에서 헤더의 높이를 뺀 값만큼 최대 높이 설정 */
 }
-.main_title{
+
+.main_title {
     font-family: "Noto Sans KR", sans-serif;
     font-style: normal;
     font-weight: 800;
     font-size: 20px;
 }
-.main_content_name{
+
+.main_content_name {
     font-family: "Noto Sans KR", sans-serif;
     font-style: normal;
     font-weight: 800;
