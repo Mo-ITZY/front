@@ -2,8 +2,10 @@ import { useState } from 'react';
 import './Signin.module.css';
 import Header from '../header/header';
 import style from './Signin.module.css';
+import { useNavigate } from 'react-router-dom';
 
 const Signin = () => {
+  const navigate = useNavigate();
   const [formData, setFormData] = useState({
     loginId: '',
     name: '',
@@ -50,6 +52,7 @@ const Signin = () => {
       if (response.ok) {
         console.log('Signup successful');
         alert('회원가입이 완료되었습니다.')
+        navigate('/login'); // 회원가입 성공 시 로그인 페이지로 이동
       } else {
         console.log('Signup failed');
         alert('회원가입이 실패되었습니다.')
