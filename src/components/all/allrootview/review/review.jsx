@@ -1,11 +1,12 @@
 ﻿//import styles from './likeroot.module.css';
 
 
-function review() {
+function Review() {
   return (
     <div>
+      AAA
     </div>
   )
 }
 
-export default review
+export default Review

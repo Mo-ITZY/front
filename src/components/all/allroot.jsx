@@ -10,13 +10,13 @@ function ALLroot() {
   const searchData = location.state || { keyword: '', page: 0, size: 5 };
 
   const [pageNo, setPageNo] = useState(searchData.page);
-  const pageSize = 10;
+  //const pageSize = 10;
 
   useEffect(() => {
     const fetchDataFromAPI = async () => {
       try {
         const response = await axios.post('http://localhost:8080/mo-itzy/festivals', { keyword: searchData.keyword, page: pageNo, size: 5 });
-        console.log("데이터 셋~", response.data.data.content); // 콘솔에 데이터 출력
+        console.log("데이터 셋~", response.data.data); // 콘솔에 데이터 출력
         // console.log("Fetched data:", response.data.content); // 콘솔에 데이터 출력
         setDatas(response.data.data.content || []);
       } catch (error) {
@@ -42,6 +42,7 @@ function ALLroot() {
               img = "/placeholder.jpg",
               lat = "위도정보 없음",
               lng = "경도정보 없음",
+              expense = "무료",
               trafficInfo = "교통 정보 없음",
               contact = "연락처 정보 없음",
               homepage = "홈페이지 정보 없음",
@@ -57,7 +58,7 @@ function ALLroot() {
 
             return (
               <div key={id} className={styles.box11}>
-                <NavLink to={`/allrootview/${id}`} state={{id, name, img, lat, lng, trafficInfo, contact, homepage, description, facilites, place: {first, second, third, detail}}} className={styles.navLink}>
+                <NavLink to={`/allrootview/${id}`} state={{id, name, img, lat, lng, trafficInfo ,startDate, expense, endDate, contact, facilites, homepage, description, place: {first, second, third, detail}}} className={styles.navLink}>
                   <img src={img} className={styles.img_size} alt={name} />
                   <div>
                     <p>축제 이름: {name}</p>
