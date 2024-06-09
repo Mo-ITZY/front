@@ -20,7 +20,7 @@ function Detail() {
   }
 
   console.log("아이템!!!!!!!!!!!:", items)
-
+  // 오는값: id, name, img, lat, lng, trafficInfo, contact, homepage, description, facilites, place: {first, second, third, detail}
 
   return (
     <div>

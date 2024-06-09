@@ -8,11 +8,12 @@ function Noticeboard() {
     const [inform, setInform] = useState([]);
     const [error, setError] = useState(null);
   
-    useEffect(() => {
-      axios.get('http://localhost:8080/mo-itzy/main')
+    useEffect(() => { axios.get('http://localhost:8080/mo-itzy/main')
         .then(response => {
+          console.log(response);
           // id를 기준으로 내림차순 정렬 후 상위 5개 항목만 선택
-          const sortedData = response.data.sort((a, b) => b.id - a.id).slice(0, 5);
+          const sortedData = response.data.data.content.sort((a, b) => b.id - a.id).slice(0, 5);
+          console.log(response.data);
           setInform(sortedData);
         })
         .catch(error => {
