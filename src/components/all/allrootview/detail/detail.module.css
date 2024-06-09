@@ -1,32 +1,71 @@
 ﻿@import url("https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@100;200;300;400;500;600;700;800;900&display=swap");
 
-.main_img {
-    position: relative;
-    margin-top: 40px;
-    width: 95%;
-}
-
-.main_content {
-    padding-top: 5%;
+.Inform_Container {
+    padding-top: 100px; /* 헤더의 높이만큼 여백 추가 */
+    padding-bottom: 20%;
     position: fixed;
-    top: 85px;
-    left: 25px;
-    text-align: left;
+    top: 0; /* 화면 상단에 고정 */
+    left: 0; /* 왼쪽에 고정 */
+    width: 100%; /* 컨테이너가 화면의 전체 너비를 차지하도록 설정 */
+    box-sizing: border-box; /* padding과 border를 width에 포함 */
+    overflow-y: auto; /* 세로 스크롤이 내용이 넘칠 때만 표시 */
+    max-height: 100vh; /* 컨테이너의 최대 높이를 화면 높이로 설정 */
+}
+
+
+
+.title {
+    font-family: "Noto Sans KR", sans-serif;
+    font-style: normal;
+    font-weight: 800;
+    font-size: 30px;
+    margin-bottom: 20px; /* 마진 바텀을 픽셀 단위로 수정 */
+    padding-left: 5%;
     padding-right: 5%;
-    overflow-y: auto; /* 수직 스크롤 추가 */
-    max-height: calc(100vh - 155px); /* 화면 높이에서 헤더의 높이를 뺀 값만큼 최대 높이 설정 */
 }
 
-.main_title {
-    font-family: "Noto Sans KR", sans-serif;
-    font-style: normal;
-    font-weight: 800;
-    font-size: 20px;
+.main_line {
+    border-bottom: 1px solid #dedede;
+    margin-top: 20px;
+    width: 100%; /* 화면의 전체 너비를 차지하도록 설정 */
+    margin-bottom: 20px;
 }
 
-.main_content_name {
+.notice_name {
     font-family: "Noto Sans KR", sans-serif;
-    font-style: normal;
-    font-weight: 800;
-    font-size: 20px;
+    font-weight: 500;
+    font-size: 15px;
+    color: black;
+    width: 100%; /* 화면의 전체 너비를 차지하도록 설정 */
+}
+.notice_title{
+    font-size: 25px;
+    padding-left: 5%;
+    padding-right: 5%;
+    margin-left: 5%;
+}
+.notice_content{
+    padding-left: 10%;
+    padding-right: 10%;
+}
+
+.main_img{
+    width: 100%;
+    height: auto;
+}
+.address{
+    display: flex;
+    justify-content: center;
+}
+
+.address_detail{
+    margin-right: 10px;
+}
+
+.content{
+    padding-left: 5%;
+    padding-right: 5%;
+}
+.href{
+    color: black;
 }

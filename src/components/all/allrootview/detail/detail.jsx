@@ -1,15 +1,15 @@
 ﻿import { useEffect, useState } from 'react';
 import { useParams, useLocation } from 'react-router-dom';
-import axios from 'axios';  // axios 임포트
 import styles from './detail.module.css';
+import Detail_address from './detail_address/detail_address';
+import Review from '../review/review';
 
 function Detail() {
   const { id } = useParams();
   const location = useLocation();
-  const [items, setData] = useState(location.state || null);
+  const [items] = useState(location.state || null);
 
   useEffect(() => {
-
     if (!items) {
       console.error("아이템 이상:", id);
     }
@@ -19,34 +19,52 @@ function Detail() {
     return <div>로딩중</div>;
   }
 
-  console.log("아이템!!!!!!!!!!!:", items)
-  // 오는값: id, name, img, lat, lng, trafficInfo, contact, homepage, description, facilites, place: {first, second, third, detail}
+  console.log("축제 상세:", items);
 
   return (
-    <div>
-      <div className={styles.main_content}>
-        <div className={styles.main_title}>{items.name}</div>
-        <img src={items.img} className={styles.main_img} alt={items.img} />
-        <div>
-          <div className={styles.main_content_name}>축제 이름</div>
-          <div>{items.name}</div>
-        </div>
-        <div>
-          <div className={styles.main_content_name}>축제 장소</div>
-          <div>{items.place.first}</div>
-          <div>{items.place.second}</div>
-        </div>
-        <div>
-          <div className={styles.main_content_name}>축제 운영 기간</div>
-          <div>{items.description}</div>
-        </div>
-        <div>
-          <div className={styles.main_content_name}>관련 홈페이지</div>
-          <div>{items.contact}</div>
-        </div>
+    <div className={styles.Inform_Container}>
+      <div className={styles.title}>{items.name}</div>
+      <img src={items.img} className={styles.main_img} alt={items.img} />
+      <div>
+        <a href={items.homepage} className={styles.href}>{items.homepage}</a>
+      </div>
+      <div>
+        <div className={styles.main_line}></div>
+        <div className={styles.notice_name}>행사 설명</div>
+        <div className={styles.content}>{items.description}</div>
+      </div>
+      <div>
+        <div className={styles.main_line}></div>
+        <div className={styles.notice_name}>행사 주소</div>
+        <Detail_address item={items} />
+      </div>
+      <div>
+        <div className={styles.main_line}></div>
+        <div className={styles.notice_name}>행사 기간</div>
+        <div>{items.startDate}-{items.endDate}</div>
+      </div>
+      <div>
+        <div className={styles.main_line}></div>
+        <div className={styles.notice_name}>행사 관련 전화번호</div>
+        <div>{items.contact}</div>
+      </div>
+      <div>
+        <div className={styles.main_line}></div>
+        <div className={styles.notice_name}>행사 가격</div>
+        <div className={styles.content}>{items.expense}</div>
+      </div>
+      <div>
+        <div className={styles.main_line}></div>
+        <div className={styles.notice_name}>편의사항</div>
+        <div className={styles.content}>{items.facilities}</div>
+      </div>
+      <div>
+        <div className={styles.main_line}></div>
+        <div className={styles.notice_name}>리뷰</div>
+        <Review />
       </div>
     </div>
   );
-}
+} 
 
 export default Detail;

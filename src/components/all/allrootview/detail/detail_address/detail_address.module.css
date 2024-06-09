@@ -1,0 +1,8 @@
+﻿.address{
+    display: flex;
+    justify-content: center;
+}
+
+.detail_address{
+    margin-right: 10px;
+}
