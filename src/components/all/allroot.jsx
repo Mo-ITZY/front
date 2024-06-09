@@ -39,6 +39,13 @@ function ALLroot() {
               id,
               name = "이름 정보 없음",
               img = "/placeholder.jpg",
+              lat = "위도정보 없음",
+              lng = "경도정보 없음",
+              trafficInfo = "교통 정보 없음",
+              contact = "연락처 정보 없음",
+              homepage = "홈페이지 정보 없음",
+              description = "축제 설명 없음",
+              facilites = "편의 시설 정보 없음",
               place = {},
               period = {}
             } = data;
@@ -49,7 +56,7 @@ function ALLroot() {
 
             return (
               <div key={id} className={styles.box11}>
-                <NavLink to={`/allrootview/${id}`} state={{id, name, img, place: {first, second, third, detail}}} className={styles.navLink}>
+                <NavLink to={`/allrootview/${id}`} state={{id, name, img, lat, lng, trafficInfo, contact, homepage, description, facilites, place: {first, second, third, detail}}} className={styles.navLink}>
                   <img src={img} className={styles.img_size} alt={name} />
                   <div>
                     <p>축제 이름: {name}</p>
