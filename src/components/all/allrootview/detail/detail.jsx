@@ -1,5 +1,5 @@
 ﻿import { useEffect, useState } from 'react';
-import { useParams, useLocation } from 'react-router-dom';
+import { useParams, useLocation, NavLink } from 'react-router-dom';
 import styles from './detail.module.css';
 import Detail_address from './detail_address/detail_address';
 import Review from '../review/review';
@@ -13,7 +13,7 @@ function Detail() {
     if (!items) {
       console.error("아이템 이상:", id);
     }
-  }, [id]);
+  });
 
   if (!items) {
     return <div>로딩중</div>;
@@ -61,8 +61,15 @@ function Detail() {
       <div>
         <div className={styles.main_line}></div>
         <div className={styles.notice_name}>리뷰</div>
-        <Review />
+        <Review item={items} />
       </div>
+      <NavLink to={'../review'}>
+          <div className={styles.go_reivew}>리뷰 작성</div>
+        </NavLink>
+      <NavLink to={'../allroot'}>
+      <div className={styles.go_list}>목록으로</div>
+      </NavLink>
+      
     </div>
   );
 } 

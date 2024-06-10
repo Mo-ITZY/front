@@ -7,7 +7,7 @@ import Pick from './pick/pick';
 function Mainroot() {
   return (
     <div className={styles.container}>
-      <Header />
+      <Header className={styles.header} />
       <div className={styles.scroll}>
         <div className={styles.pickTitle}>MoItzy-Pick</div>
         <Pick className={styles.pick} />

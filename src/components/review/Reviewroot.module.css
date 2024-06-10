@@ -1,11 +1,28 @@
-.review_box {
-  color: black;
+@import url("https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@100;200;300;400;500;600;700;800;900&display=swap");
+
+.title{
+  font-family: "Noto Sans KR", sans-serif;
+  font-style: normal;
+  font-weight: 800;
+  font-size: 32px;
 }
 
-.input_box {
-  height: 36px;
-  width: 300px;
-  margin-top: 20px;
-  border: 1px solid #e0e0e0;
+
+.textarea_box{
+  width: 200%;
+  margin-left: -50%;
+  height: 200px;
+  border: 1px solid black;
+}
+
+.submit_button{
+  margin-top: 10%;
+  width: 100%;
+  height: 25%;
+  background-color: #5CE1E6;
   border-radius: 8px;
+  cursor: pointer;
+  font-family: "Noto Sans KR", sans-serif;
+  font-weight: 500;
+  color: white;
 }
