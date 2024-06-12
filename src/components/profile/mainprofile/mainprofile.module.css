@@ -36,6 +36,7 @@
 }
 
 .change, .logout {
+    width: 120px;
     background-color: white;
     padding: 10px;
     border-radius: 5px;
@@ -43,6 +44,7 @@
     text-align: center;
     flex: 1;
     margin: 0 5px;
+    color: black;
     
 }
 
