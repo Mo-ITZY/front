@@ -1,4 +1,5 @@
 ﻿import styles from './mainprofile.module.css';
+import { NavLink } from "react-router-dom";
 
 function MainProfile() {
   return (

@@ -7,15 +7,19 @@ import Allroot_header from "./allroot_header/allroot_header";
 function ALLroot() {
   const [datas, setDatas] = useState([]);
   const location = useLocation();
-  const searchData = location.state || { keyword: '', page: 0, size: 10 };
+  const searchData = location.state || { keyword: '', page: 0, size: 5 };
 
   const [pageNo, setPageNo] = useState(searchData.page);
+  //const pageSize = 10;
 
   useEffect(() => {
     const fetchDataFromAPI = async () => {
       try {
-        const response = await axios.post('http://localhost:8080/mo-itzy/festivals', { keyword: searchData.keyword, page: pageNo, size: 5 });
+        console.log("데이터 셋~", searchData);
+        console.log("페이지 넘버", pageNo);
+        const response = await axios.post('http://localhost:8080/mo-itzy/festivals', { keyword: searchData.keyword, page: pageNo, size: 10 });
         console.log("데이터 셋~", response.data.data); // 콘솔에 데이터 출력
+        // console.log("Fetched data:", response.data.content); // 콘솔에 데이터 출력
         setDatas(response.data.data.content || []);
       } catch (error) {
         console.error("Error fetching festivals:", error);
@@ -33,6 +37,7 @@ function ALLroot() {
           <p>데이터가 없습니다.</p>
         ) : (
           datas.map((data) => {
+            // null 값 처리를 위한 기본값 설정
             const {
               id,
               name = "이름 정보 없음",
@@ -49,6 +54,7 @@ function ALLroot() {
               period = {}
             } = data;
 
+            // place 객체가 null인 경우 빈 객체로 설정
             const { first = "", second = "", third = "", detail = "" } = place || {};
             const { startDate = "시작 날짜 없음", endDate = "종료 날짜 없음" } = period || {};
 
@@ -57,9 +63,9 @@ function ALLroot() {
                 <NavLink to={`/allrootview/${id}`} state={{id, name, img, lat, lng, trafficInfo ,startDate, expense, endDate, contact, facilites, homepage, description, place: {first, second, third, detail}}} className={styles.navLink}>
                   <img src={img} className={styles.img_size} alt={name} />
                   <div>
-                    <p>{name}</p>
-                    <p>{first} {second} {third} {detail}</p>
-                    <p>{startDate} - {endDate}</p>
+                    <p>축제 이름: {name}</p>
+                    <p>장소: {first} {second} {third} {detail}</p>
+                    <p>기간: {startDate} - {endDate}</p>
                   </div>
                 </NavLink>
               </div>
@@ -77,7 +83,6 @@ function ALLroot() {
 }
 
 export default ALLroot;
-
 
 
 
