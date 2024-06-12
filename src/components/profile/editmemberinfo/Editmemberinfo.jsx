@@ -19,7 +19,7 @@ function EditMemberInfo() {
     };
 
     try {
-      const response = await axios.post('http://localhost:8080/mo-itzy/mypage/member_id/update', memberInfo);
+      const response = await axios.post('http://localhost:8080/mo-itzy/mypage/update', memberInfo);
 
       if (response.status === 200) {
         // Handle success
