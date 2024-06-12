@@ -1,1 +1,48 @@
+@import url("https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@100;200;300;400;500;600;700;800;900&display=swap");
 
+.noticebox_title{
+    font-family: "Noto Sans KR", sans-serif;
+    font-style: normal;
+    font-weight: 800;
+    font-size: 30px;
+}
+.noticebox_content{
+    
+    display: flex;
+    margin-bottom: 20px;
+    margin-top: 20px;
+    margin-left: -5%;
+}
+
+.noticebox_content_title{
+    font-family: "Noto Sans KR", sans-serif;
+    font-style: normal;
+    font-weight: 600;
+    font-size: 25px;
+    margin-right: 25px;
+}
+
+.noticebox_content_input{
+    border: 1px solid #d9d9d9;
+    border-radius: 8px;
+    width: 300px;
+}
+
+.noticebox_content_textarea{
+    border: 1px solid #d9d9d9;
+    border-radius: 8px;
+    width: 300px;
+    height: 300px;
+}
+
+.noticebox_btn{
+    font-family: "Noto Sans KR", sans-serif;
+    font-style: normal;
+    font-weight: 500;
+    font-size: 20px;
+    background-color: #5CE1E6;
+    color: white;
+    border-radius: 10px;
+    position: absolute;
+    margin-left: 50px;
+}
