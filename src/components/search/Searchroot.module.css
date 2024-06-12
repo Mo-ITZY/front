@@ -1,21 +1,24 @@
-.Container {
-  align-items:flex-start; 
-  width: 350px;
-  height: 900px;
-}
 
 .Search_Container{
+
   display: flex;
   justify-content: center;
 }
-
+.Search_Button{
+  background-color: #5CE1E6;
+}
+.icon{
+  color: white;
+  font-size: 25px;
+}
 .Search_Input {
-  width: 350px;
+  width: 270px;
   height: 30px;
   padding: 8px;
   background-color: transparent;
   border-radius: 10px; 
-  outline: solid 1px white;
+  margin-right: 5%;
+  color: black;
 }
 
 .Horizon_Line {

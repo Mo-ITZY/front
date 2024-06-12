@@ -17,8 +17,8 @@ function Reviewroot() {
   return (
     <div>
       <Header />
-      <div className={styles.review_container}>
-        <div className={styles.review_title}>
+      <div>
+        <div>
           <div className={styles.title}>리뷰 작성</div>
         </div>
         <form onSubmit={handleSubmit}>

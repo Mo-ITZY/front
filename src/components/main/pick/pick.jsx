@@ -2,6 +2,7 @@
 import axios from 'axios';
 import styles from './pick.module.css';
 
+
 function Pick() {
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
   const [festivals, setFestivals] = useState([]);
@@ -9,7 +10,7 @@ function Pick() {
   useEffect(() => {
     const fetchDataFromAPI = async () => {
       try {
-        const response = await axios.post('http://localhost:8080/mo-itzy/festivals', { keyword: '', page: 0, size: 5 });
+        const response = await axios.post('http://localhost:8080/mo-itzy/festivals', { keyword: '', page: 0, size: 10 });
         console.log("데이터 셋~", response.data.data.content); // 콘솔에 데이터 출력
         setFestivals(response.data.data.content || []);
       } catch (error) {
@@ -23,7 +24,7 @@ function Pick() {
   useEffect(() => {
     const interval = setInterval(() => {
       setCurrentImageIndex(prevIndex => (prevIndex + 1) % festivals.length);
-    }, 5000);
+    }, 3000);
 
     return () => clearInterval(interval);
   }, [festivals]);
