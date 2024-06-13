@@ -49,6 +49,7 @@ function MainProfile() {
         {user ? (
           <>
             <div className={styles.name}>이름: {user.data.name}</div>
+            <div className={styles.review}>작성하신 리뷰 : {user.data.reviewCount}개</div>
             <div className={styles.location}>
               <NavLink to='/profile/edit'>
                 <div className={styles.change}>회원정보 수정</div>
