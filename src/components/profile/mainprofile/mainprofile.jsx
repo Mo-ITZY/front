@@ -1,12 +1,15 @@
-﻿import { useEffect, useState } from 'react';
-import { NavLink, useNavigate } from 'react-router-dom';
+﻿import { NavLink, useNavigate } from 'react-router-dom';
 import axios from 'axios';
+import { useState, useEffect } from 'react';
+import { useAuth } from '../../context/authprovider'; // AuthProvider 파일 경로에 맞게 수정해야 합니다.
 import styles from './mainprofile.module.css';
 
 
 function MainProfile() {
   const [user, setUser] = useState(null);
   const navigate = useNavigate();
+
+  const { token, deleteToken } = useAuth();
 
   useEffect(() => {
     const fetchUserProfile = async () => {
@@ -35,6 +38,18 @@ function MainProfile() {
     localStorage.removeItem('token');
     navigate('/login');
   };
+
+  
+
+  // 토큰이 있는 경우 토큰에 맞는 이름을 설정
+  // const [name, setName] = useState(token ? '로그인 됨' : '로그인해주세요');
+  // const [buttonLabel, setButtonLabel] = useState(token ? '로그아웃' : '로그인');
+
+  // useEffect(() => {
+  //   setName(token ? '로그인 됨' : '로그인해주세요');
+  //   setButtonLabel(token ? '로그아웃' : '로그인');
+  // }, [token]);
+
 
   return (
     <div>

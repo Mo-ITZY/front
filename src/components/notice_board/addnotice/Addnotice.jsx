@@ -1,6 +1,7 @@
 import styles from './Addnotice.module.css';
 import { useState } from 'react';
 import axios from 'axios';
+import Header from '../../header/header';
 
 function Addnotice() {
   const [title, setTitle] = useState('');
@@ -27,14 +28,16 @@ function Addnotice() {
   
   return (
     <div>
+      <Header />
       <form onSubmit={handleSubmit}>
         <div className={styles.noticebox}>
-          <div className={styles.noticebox_title}>공지사항 작성</div>
+          <div className={styles.noticebox_title}>공지사항</div>
           <div className={styles.noticebox_content}>
             <div className={styles.noticebox_content_title}>제목</div>
             <input
               type="text"
               className={styles.noticebox_content_input}
+              placeholder='공지사항 제목을 입력해주세요'
               value={title}
               onChange={(e) => setTitle(e.target.value)}
             />
@@ -44,10 +47,11 @@ function Addnotice() {
             <textarea
               className={styles.noticebox_content_textarea}
               value={content}
+              placeholder='공지사항 내용을 입력해주세요'
               onChange={(e) => setContent(e.target.value)}
             />
           </div>
-          <button type="submit" className={styles.noticebox_btn}>등록</button>
+          <button type="submit" className={styles.noticebox_btn}>작성완료</button>
         </div>
       </form>
     </div>

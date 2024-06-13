@@ -2,6 +2,7 @@ import styles from './Editmemberinfo.module.css';
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
+import Header from '../../header/header';
 
 function EditMemberInfo() {
   const [password, setPassword] = useState('');
@@ -37,33 +38,44 @@ function EditMemberInfo() {
   };
   
   return (
-    <form onSubmit={handleSubmit}>
-      <div>
-        비밀번호 수정
-        <input
-          type="password"
-          value={password}
-          onChange={(e) => setPassword(e.target.value)}
-        />
-      </div>
-      <div>
-        이름 수정
-        <input
-          type="text"
-          value={name}
-          onChange={(e) => setName(e.target.value)}
-        />
-      </div>
-      <div>
-        이메일 수정
-        <input
-          type="text"
-          value={email}
-          onChange={(e) => setEmail(e.target.value)}
-        />
-      </div>
-      <button type="submit">수정하기</button>
-    </form>
+    <div>
+      <Header />
+      <form onSubmit={handleSubmit}>
+        <div className={styles.change_title}>회원 정보 변경</div>
+        <div className={styles.change_content}>
+          <div className={styles.content_title}>비밀번호 변경</div>
+          <div>
+            <input type="password" value={password}
+              onChange={(e) => setPassword(e.target.value)}
+              placeholder='변경하실 정보를 입력해주세요'
+              className={styles.input_box}
+            />
+          </div>
+        </div>
+        <div className={styles.change_content}>
+          <div className={styles.content_title}>이름 변경</div>
+          <div>
+            <input
+              type="text" value={name}
+              onChange={(e) => setName(e.target.value)}
+              placeholder='변경하실 정보를 입력해주세요'
+              className={styles.input_box}
+            />
+          </div>
+        </div>
+        <div className={styles.change_content} >
+          <div className={styles.content_title}>이메일 변경 </div>
+          <div>
+          <input type="text" value={email}
+            onChange={(e) => setEmail(e.target.value)}
+            placeholder='변경하실 정보를 입력해주세요'
+            className={styles.input_box}
+          />
+          </div>
+        </div>
+        <button type="submit" className={styles.change_btn}>변경하기</button>
+      </form>
+    </div>
   );
 }
 

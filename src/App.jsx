@@ -16,6 +16,7 @@ import ALLroot from './components/all/allroot';
 import Noticeroot from './components/notice_board/noticeroot';
 import Notice_detail from './components/notice_board/notice_detail/notice_detail';
 import AddNotice from './components/notice_board/addnotice/Addnotice';
+import { AuthProvider } from './components/context/authprovider';
 
 // PrivateRoute 컴포넌트를 위한 파일에서 import
 //import PrivateRoute from './PrivateRoute';
@@ -51,6 +52,7 @@ import AddNotice from './components/notice_board/addnotice/Addnotice';
   return (
     <>
        <Router>
+        <AuthProvider>
         <Routes>
           <Route path="/" element={isPC ? <Intro /> : isMobile && <Intro />} />
           <Route path="/main" element={isPC ? <Main /> : isMobile && <Main />} />
@@ -67,6 +69,7 @@ import AddNotice from './components/notice_board/addnotice/Addnotice';
           <Route path="/editmemberinfo" element={isPC ? <EditMemberInfo /> : isMobile && <EditMemberInfo />} />
           <Route path="/addnotice" element={isPC ? <AddNotice /> : isMobile && <AddNotice />} />
         </Routes>
+        </AuthProvider>
         <Bottomnav />
       </Router>
     </>

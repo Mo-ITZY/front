@@ -17,15 +17,17 @@ const Loginroot = () => {
         loginId,
         password
       }, {
-        withCredentials: true // 쿠키를 포함하여 요청
+        withCredentials: true
       });
 
       console.log('Login response:', response);
 
       if (response.data.status === 'OK') {
         console.log('성공');
-        localStorage.setItem('token', response.data.data.token);
-        navigate('/main'); // 로그인 성공 시 이동할 페이지
+        localStorage.setItem('token', response.data.data.token); // Save token in local storage
+        console.log("token", response.data.data.token);
+        navigate('/main');
+        window.location.reload();
       } else {
         setErrorMessage(response.data.message);
       }
@@ -33,7 +35,6 @@ const Loginroot = () => {
       if (error.response && error.response.status === 401) {
         setErrorMessage('아이디 또는 비밀번호가 일치하지 않습니다.');
       } else {
-        
         console.error('Login failed:', error);
         setErrorMessage('로그인 실패. 잠시 후 다시 시도해주세요.');
       }
