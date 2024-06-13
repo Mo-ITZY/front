@@ -24,6 +24,7 @@ const Loginroot = () => {
 
       if (response.data.status === 'OK') {
         console.log('성공');
+        localStorage.setItem('token', response.data.data.token);
         navigate('/main'); // 로그인 성공 시 이동할 페이지
       } else {
         setErrorMessage(response.data.message);

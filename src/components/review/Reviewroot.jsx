@@ -1,6 +1,7 @@
 import styles from "./Reviewroot.module.css";
 import { useState } from 'react';
 import Header from "../header/header";
+import axios from 'axios';
 
 function Reviewroot() {
   const [content, setContent] = useState('');
@@ -8,9 +9,14 @@ function Reviewroot() {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      // Your submission logic here
+      const response = await axios.post('http://localhost:8080/mo-itzy/{festival_id}/review', {
+        content: content
+      });
+      console.log('Response:', response.data);
+      // 성공 시 처리 로직 추가
     } catch (error) {
-      // Error handling logic here
+      console.error('Error submitting review:', error);
+      // 에러 처리 로직 추가
     }
   };
 
