@@ -63,11 +63,11 @@ function Detail() {
         <div className={styles.notice_name}>리뷰</div>
         <Review item={items} />
       </div>
-      <NavLink to={'../review'}>
-          <div className={styles.go_reivew}>리뷰 작성</div>
-        </NavLink>
+      <NavLink to={'../addreview'} state={items}>
+        <div className={styles.go_reivew} >리뷰 작성</div>
+      </NavLink>
       <NavLink to={'../allroot'}>
-      <div className={styles.go_list}>목록으로</div>
+        <div className={styles.go_list}>목록으로</div>
       </NavLink>
       
     </div>

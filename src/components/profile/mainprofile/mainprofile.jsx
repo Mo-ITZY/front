@@ -37,19 +37,21 @@ function MainProfile() {
   }, []);
 
   const handleLogout = () => {
-    localStorage.removeItem('token');
-    navigate('/login');
+    if (window.confirm('정말 로그아웃 하시겠습니까?')) {
+      localStorage.removeItem('token');
+      navigate('/login');
+    }
   };
-
 
   return (
     <div>
       <div className={styles.main_box}>
-        <div className={styles.profile}></div>
+        <div className={styles.profile}>{user.data.img}</div>
+        {/* <img src={user.data.img} alt="Profile" className={styles.profile} /> */}
         {user ? (
           <>
             <div className={styles.name}>이름: {user.data.name}</div>
-            <div className={styles.review}>작성하신 리뷰 : {user.data.reviewCount}개</div>
+            <div className={styles.review}>작성하신 리뷰 : {user.data.reviewCount ?? 0}개</div>
             <div className={styles.location}>
               <NavLink to='/profile/edit'>
                 <div className={styles.change}>회원정보 수정</div>
