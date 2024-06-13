@@ -25,7 +25,9 @@ function MainProfile() {
             Authorization: `${token}`
           }
         });
+        console.log("user_response!!!!!: ",response);
         setUser(response.data);
+        console.log("user_data!!!!!: ",user);
       } catch (error) {
         console.error('Failed to fetch user profile:', error);
       }
@@ -39,17 +41,6 @@ function MainProfile() {
     navigate('/login');
   };
 
-  
-
-  // 토큰이 있는 경우 토큰에 맞는 이름을 설정
-  // const [name, setName] = useState(token ? '로그인 됨' : '로그인해주세요');
-  // const [buttonLabel, setButtonLabel] = useState(token ? '로그아웃' : '로그인');
-
-  // useEffect(() => {
-  //   setName(token ? '로그인 됨' : '로그인해주세요');
-  //   setButtonLabel(token ? '로그아웃' : '로그인');
-  // }, [token]);
-
 
   return (
     <div>
@@ -57,8 +48,7 @@ function MainProfile() {
         <div className={styles.profile}></div>
         {user ? (
           <>
-            <div className={styles.name}>{user.name}</div>
-            <div className={styles.review}>작성하신 리뷰 : {user.reviewsCount}개</div>
+            <div className={styles.name}>이름: {user.data.name}</div>
             <div className={styles.location}>
               <NavLink to='/profile/edit'>
                 <div className={styles.change}>회원정보 수정</div>
