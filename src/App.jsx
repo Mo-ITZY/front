@@ -18,7 +18,6 @@ import Notice_detail from './components/notice_board/notice_detail/notice_detail
 import AddNotice from './components/notice_board/addnotice/Addnotice';
 import Review from './components/all/allrootview/review/review';
 import EditProfile from './components/profile/editmemberinfo/Editmemberinfo';
-import { AuthProvider } from './components/context/authprovider';
 
 // PrivateRoute 컴포넌트를 위한 파일에서 import
 //import PrivateRoute from './PrivateRoute';
@@ -54,7 +53,6 @@ import { AuthProvider } from './components/context/authprovider';
   return (
     <>
        <Router>
-        <AuthProvider>
         <Routes>
           <Route path="/" element={isPC ? <Intro /> : isMobile && <Intro />} />
           <Route path="/main" element={isPC ? <Main /> : isMobile && <Main />} />
@@ -73,7 +71,6 @@ import { AuthProvider } from './components/context/authprovider';
           <Route path="/review" element={isPC ? <Review /> : isMobile && <Review />} />
           <Route path="/profile/edit" element={isPC ? <EditProfile /> : isMobile && <EditProfile />} />
         </Routes>
-        </AuthProvider>
         <Bottomnav />
       </Router>
     </>

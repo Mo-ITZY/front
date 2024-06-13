@@ -38,14 +38,15 @@ function AddReview() {
         <form onSubmit={handleSubmit}>
           <div className={styles.review_box}>
             <div className={styles.review_box_content}>
-              <p>리뷰 내용</p>
+              <div className={styles.sub_title}>리뷰 내용</div>
               <textarea
                 className={styles.textarea_box} // Apply your CSS class here
                 value={content}
                 onChange={(e) => setContent(e.target.value)}
+                placeholder='리뷰내용을 작성해주세요'
               />
             </div>
-            <button type="submit" className={styles.submit_button}>제출</button>
+            <button type="submit" className={styles.submit_button}>작성완료</button>
           </div>
         </form>
       </div>

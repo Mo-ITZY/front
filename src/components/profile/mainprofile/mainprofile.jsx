@@ -1,7 +1,6 @@
 ﻿import { NavLink, useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import { useState, useEffect } from 'react';
-import { useAuth } from '../../context/authprovider'; // AuthProvider 파일 경로에 맞게 수정해야 합니다.
 import styles from './mainprofile.module.css';
 
 
@@ -9,7 +8,6 @@ function MainProfile() {
   const [user, setUser] = useState(null);
   const navigate = useNavigate();
 
-  const { token, deleteToken } = useAuth();
 
   useEffect(() => {
     const fetchUserProfile = async () => {
