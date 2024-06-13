@@ -46,7 +46,7 @@ function MainProfile() {
   return (
     <div>
       <div className={styles.main_box}>
-        <div className={styles.profile}>{user.data.img}</div>
+        <div className={styles.profile}></div>
         {/* <img src={user.data.img} alt="Profile" className={styles.profile} /> */}
         {user ? (
           <>
