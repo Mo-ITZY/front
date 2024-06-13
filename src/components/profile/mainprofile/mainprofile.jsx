@@ -1,44 +1,72 @@
-﻿import { useState, useEffect } from 'react';
-import { useNavigate } from "react-router-dom";
+﻿import { NavLink, useNavigate } from 'react-router-dom';
+import axios from 'axios';
+import { useState, useEffect } from 'react';
 import { useAuth } from '../../context/authprovider'; // AuthProvider 파일 경로에 맞게 수정해야 합니다.
 import styles from './mainprofile.module.css';
 
+
 function MainProfile() {
-  const { token, deleteToken } = useAuth();
+  const [user, setUser] = useState(null);
   const navigate = useNavigate();
 
-  // 토큰이 있는 경우 토큰에 맞는 이름을 설정
-  const [name, setName] = useState(token ? '로그인 됨' : '로그인해주세요');
-  const [buttonLabel, setButtonLabel] = useState(token ? '로그아웃' : '로그인');
+  const { token, deleteToken } = useAuth();
 
   useEffect(() => {
-    setName(token ? '로그인 됨' : '로그인해주세요');
-    setButtonLabel(token ? '로그아웃' : '로그인');
-  }, [token]);
+    const fetchUserProfile = async () => {
+      const token = localStorage.getItem('token');
+      if (!token) {
+        console.error('No token found');
+        return;
+      }
 
-  // 로그인 또는 로그아웃 버튼 클릭 핸들러
-  const handleButtonClick = () => {
-    if (token) {
-      console.log("토큰값", token);
-      deleteToken();
-    } else {
-      console.log("토큰값", token);
-      navigate('../login');
-    }
+      try {
+        const response = await axios.get('http://localhost:8080/mo-itzy/mypage', {
+          headers: {
+            Authorization: `${token}`
+          }
+        });
+        console.log("user_response!!!!!: ",response);
+        setUser(response.data);
+        console.log("user_data!!!!!: ",user);
+      } catch (error) {
+        console.error('Failed to fetch user profile:', error);
+      }
+    };
+
+    fetchUserProfile();
+  }, []);
+
+  const handleLogout = () => {
+    localStorage.removeItem('token');
+    navigate('/login');
   };
+
 
   return (
     <div>
-      <div>
-        <div className={styles.main_box}>
-          <div className={styles.profile}></div>
-          <div className={styles.name}>{name}</div>
-          <div className={styles.review}>작성하신 리뷰 : 4개</div>
-          <div className={styles.location}>
-            <div className={styles.change}>회원정보 수정</div>
-            <button className={styles.logout} onClick={handleButtonClick}>{buttonLabel}</button>
-          </div>
-        </div>
+      <div className={styles.main_box}>
+        <div className={styles.profile}></div>
+        {user ? (
+          <>
+            <div className={styles.name}>이름: {user.data.name}</div>
+            <div className={styles.location}>
+              <NavLink to='/profile/edit'>
+                <div className={styles.change}>회원정보 수정</div>
+              </NavLink>
+              <div className={styles.logout} onClick={handleLogout}>로그아웃</div>
+            </div>
+          </>
+        ) : (
+          <>
+            <div className={styles.name}>로그인해주세요</div>
+            <div className={styles.review}>작성하신 리뷰 : 0개</div>
+            <div className={styles.location}>
+              <NavLink to='/login'>
+                <div className={styles.logout}>로그인</div>
+              </NavLink>
+            </div>
+          </>
+        )}
       </div>
     </div>
   );
