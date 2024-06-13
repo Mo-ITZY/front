@@ -8,7 +8,7 @@ import Profile from './components/profile/Profileroot'
 import Like from './components/like/likeroot';
 import AllRootView from './components/all/allrootview/allrootview';
 import Signin from './components/signin/Signin';
-import Review from './components/review/Reviewroot';
+import AddReview from './components/addreview/AddReview';
 import EditMemberInfo from './components/profile/editmemberinfo/Editmemberinfo';
 import { useMediaQuery } from "react-responsive";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
@@ -16,6 +16,7 @@ import ALLroot from './components/all/allroot';
 import Noticeroot from './components/notice_board/noticeroot';
 import Notice_detail from './components/notice_board/notice_detail/notice_detail';
 import AddNotice from './components/notice_board/addnotice/Addnotice';
+import Review from './components/all/allrootview/review/review';
 import { AuthProvider } from './components/context/authprovider';
 
 // PrivateRoute 컴포넌트를 위한 파일에서 import
@@ -63,11 +64,12 @@ import { AuthProvider } from './components/context/authprovider';
           <Route path="/profile" element={isPC ? <Profile /> : isMobile && <Profile />} />
           <Route path="/like" element={isPC ? <Like /> : isMobile && <Like />} />
           <Route path="/signin" element={isPC ? <Signin /> : isMobile && <Signin />} />
-          <Route path="/review" element={isPC ? <Review /> : isMobile && <Review />} />
+          <Route path="/addreview" element={isPC ? <AddReview /> : isMobile && <AddReview />} />
           <Route path="/notice" element={isPC ? <Noticeroot /> : isMobile && <Noticeroot />} />
           <Route path="/notice_detail/:id" element={isPC ? <Notice_detail /> : isMobile && <Notice_detail />} />
           <Route path="/editmemberinfo" element={isPC ? <EditMemberInfo /> : isMobile && <EditMemberInfo />} />
           <Route path="/addnotice" element={isPC ? <AddNotice /> : isMobile && <AddNotice />} />
+          <Route path="/review" element={isPC ? <Review /> : isMobile && <Review />} />
         </Routes>
         </AuthProvider>
         <Bottomnav />
