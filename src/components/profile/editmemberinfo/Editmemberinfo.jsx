@@ -73,6 +73,28 @@ function EditMemberInfo() {
           />
           </div>
         </div>
+        <div className={styles.change_content}>
+          <div className={styles.content_title}>주소 변경</div>
+          <div>
+            <input
+              type="text" value={name}
+              onChange={(e) => setName(e.target.value)}
+              placeholder='변경하실 정보를 입력해주세요'
+              className={styles.input_box}
+            />
+          </div>
+        </div>
+        <div className={styles.change_content}>
+          <div className={styles.content_title}>이미지 변경</div>
+          <div>
+            <input
+              type="text" value={name}
+              onChange={(e) => setName(e.target.value)}
+              placeholder='변경하실 정보를 입력해주세요'
+              className={styles.input_box}
+            />
+          </div>
+        </div>
         <button type="submit" className={styles.change_btn}>변경하기</button>
       </form>
     </div>
