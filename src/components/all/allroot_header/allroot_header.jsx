@@ -1,6 +1,7 @@
 ﻿import PropTypes from 'prop-types'; // prop-types를 임포트합니다.
 import styles from "./allroot_header.module.css";
 import { MdChevronLeft } from "react-icons/md";
+import { NavLink } from 'react-router-dom';
 
 function AllrootHeader({ keyword }) {
   const renderRelatedFestival = () => {
@@ -14,7 +15,9 @@ function AllrootHeader({ keyword }) {
     <div>
       
       <div className={styles.header_location}>
+        <NavLink to={`../main`}>
         <div className={styles.icon}><MdChevronLeft /></div>
+        </NavLink>
         {renderRelatedFestival()}
       </div>
     </div>
