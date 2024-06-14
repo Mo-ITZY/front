@@ -6,21 +6,37 @@ import Header from '../../header/header';
 function Addnotice() {
   const [title, setTitle] = useState('');
   const [content, setContent] = useState('');
+  const [writeDate, setDate] = useState('');
 
   const handleSubmit = async (event) => {
     event.preventDefault();
 
-    const notice = {
-      title: title,
-      content: content,
-    };
+    const token = localStorage.getItem('token');
+    if (!token) {
+      console.error('No token found');
+      return;
+    }
+
+    // const writeDate = setDate("2021-09-01");
+
+    // const notice = {
+    //   title: title,
+    //   content: content,
+    //   writeDate: writeDate
+    // };
+
+    console.log('Notice:', title);
+    console.log('Notice:', content);
 
     try {
-      const response = await axios.post('http://localhost:8080/mo-itzy/notice/edit', notice);
+      const response = await axios.post('http://localhost:8080/mo-itzy/notice', 
+        {title: title, content: content}, {
+        headers: {
+          Authorization: `${token}`
+        }
+      });
       console.log('Notice submitted:', response.data);
       // 성공적으로 제출한 후 폼 초기화 (선택 사항)
-      setTitle('');
-      setContent('');
     } catch (error) {
       console.error('공지사항 제출 중 오류가 발생했습니다:', error);
     }

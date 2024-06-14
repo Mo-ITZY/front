@@ -41,9 +41,6 @@ function Review() {
       ) : (
         <div>
           <p>리뷰 내용이 없습니다.</p>
-          {/* <NavLink to='/addreview' state={items}>
-            <button className={styles.add_review}>리뷰 작성하기</button>
-          </NavLink> */}
         </div>
       )}
     </div>
