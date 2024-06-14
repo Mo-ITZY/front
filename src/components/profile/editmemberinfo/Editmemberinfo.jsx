@@ -213,7 +213,7 @@ function EditMemberInfo() {
       if (response.status === 200) {
         // 성공 처리
         alert('회원 정보가 성공적으로 수정되었습니다.');
-        navigate('/somewhere');  // 필요에 따라 다른 페이지로 이동
+        navigate('/profile');  // 필요에 따라 다른 페이지로 이동
       } else {
         // 서버 오류 처리
         alert('회원 정보 수정에 실패했습니다.');
@@ -225,13 +225,13 @@ function EditMemberInfo() {
     }
   };
 
-  const handleVerifySuccess = () => {
-    setIsPasswordVerified(true);
-  };
+  // const handleVerifySuccess = () => {
+  //   setIsPasswordVerified(true);
+  // };
 
-  const togglePasswordVerification = () => {
-    setIsPasswordVerified(!isPasswordVerified);
-  };
+  // const togglePasswordVerification = () => {
+  //   setIsPasswordVerified(!isPasswordVerified);
+  // };
   
   return (
     <div>
