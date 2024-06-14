@@ -17,7 +17,7 @@ function ALLroot() {
       try {
         console.log("데이터 셋~", searchData);
         console.log("페이지 넘버", pageNo);
-        const response = await axios.post(`http://localhost:8080/mo-itzy/festivals?page=${pageNo}&size=10`, { keyword: searchData.keyword });
+        const response = await axios.post(`http://localhost:8080/mo-itzy/festivals?page=${pageNo}&size=5`, { keyword: searchData.keyword });
         console.log("데이터 셋~", response.data.data); // 콘솔에 데이터 출력
         // console.log("Fetched data:", response.data.content); // 콘솔에 데이터 출력
         setDatas(response.data.data.content || []);
