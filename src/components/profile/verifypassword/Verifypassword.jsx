@@ -1,55 +1,68 @@
+import React, { useState } from 'react';
 import styles from './Verifypassword.module.css';
-import { useState } from 'react';
 import axios from 'axios';
+import EditMemberInfo from '../editmemberinfo/Editmemberinfo';
+import { useNavigate } from 'react-router-dom';
 
-const VerifyPassword = ({ onClose, onVerifySuccess }) => {
-  const [password, setPassword] = useState('');
-  
-  const handleVerify = async () => {
+const VerifyPassword = () => {
+  const [passwordCheck, setPasswordCheck] = useState('');
+  const [error, setError] = useState('');
+  const navigate = useNavigate();
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+
     const token = localStorage.getItem('token');
     if (!token) {
-      console.error('No token found');
+      console.error('토큰이 없습니다.');
+      return;
+    }
+
+    if (passwordCheck === '') {
+      setError('비밀번호를 입력하세요.');
       return;
     }
 
     try {
-      const response = await axios.post('http://localhost:8080/password-check', { password: password },
-      {
-        headers: {
-          Authorization: `${token}`
+      const response = await axios.post(
+        'http://localhost:8080/mo-itzy/password-check',
+        { password: passwordCheck },
+        {
+          headers: {
+            Authorization: `${token}`
+          }
         }
-      });
-
+      );
+      
       if (response.status === 200) {
-        // Verification successful
-        onVerifySuccess();
-        onClose();
+        navigate('/profile/edit'); 
       } else {
-        console.error('비밀번호 확인 실패');
-        alert('비밀번호 확인에 실패했습니다.');
+        setError('비밀번호가 일치하지 않습니다.');
       }
     } catch (error) {
-      console.error('오류:', error);
-      alert('비밀번호 확인 중 오류가 발생했습니다.');
+      console.error('비밀번호 확인 중 오류 발생:', error);
+      setError('비밀번호 확인 중 오류가 발생했습니다.');
     }
   };
 
   return (
-    <div className={styles.popup}>
-      <div className={styles.popupContent}>
-        <button className={styles.closeButton} onClick={onClose}>X</button>
-        <p>비밀번호를 입력해주세요</p>
-        <input
-          type="password"
-          className={styles.noticebox_content_input}
-          placeholder='비밀번호를 입력해주세요'
-          value={password}
-          onChange={(e) => setPassword(e.target.value)}
-        />
-        <button onClick={handleVerify} className={styles.noticebox_content_button}>확인</button>
+    <div className={styles.modal}>
+      <div className={styles.modal_content}>
+        <h2>비밀번호 확인</h2>
+        <form onSubmit={handleSubmit}>
+          <input
+            type="password"
+            value={passwordCheck}
+            onChange={(e) => setPasswordCheck(e.target.value)}
+            placeholder="비밀번호를 다시 입력하세요."
+            className={styles.input_box}
+          />
+          {error && <div className={styles.error}>{error}</div>}
+          <button type="submit" className={styles.verify_btn}>확인</button>
+        </form>
       </div>
     </div>
-  ); 
-}
+  );
+};
 
 export default VerifyPassword;

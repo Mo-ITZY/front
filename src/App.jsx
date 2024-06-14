@@ -18,6 +18,7 @@ import Notice_detail from './components/notice_board/notice_detail/notice_detail
 import AddNotice from './components/notice_board/addnotice/Addnotice';
 import Review from './components/all/allrootview/review/review';
 import EditProfile from './components/profile/editmemberinfo/Editmemberinfo';
+import VerifyPassword from './components/profile/verifypassword/Verifypassword';
 import DeleteMember from './components/profile/deletemember/Deletememberinfo';
 
 // PrivateRoute 컴포넌트를 위한 파일에서 import
@@ -72,6 +73,7 @@ import DeleteMember from './components/profile/deletemember/Deletememberinfo';
           <Route path="/review" element={isPC ? <Review /> : isMobile && <Review />} />
           <Route path="/profile/edit" element={isPC ? <EditProfile /> : isMobile && <EditProfile />} />
           <Route path="/profile/delete" element={isPC ? <DeleteMember /> : isMobile && <DeleteMember />} />
+          <Route path="/verifypassword" element={isPC ? <VerifyPassword /> : isMobile && <VerifyPassword />} />
         </Routes>
         <Bottomnav />
       </Router>
