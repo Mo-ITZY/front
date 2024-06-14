@@ -45,13 +45,12 @@ function MainProfile() {
     <div>
       <div className={styles.main_box}>
         <div className={styles.profile}></div>
-        {/* <img src={user.data.img} alt="Profile" className={styles.profile} /> */}
         {user ? (
           <>
             <div className={styles.name}>이름: {user.data.name}</div>
             <div className={styles.review}>작성하신 리뷰 : {user.data.reviewCount ?? 0}개</div>
             <div className={styles.location}>
-              <NavLink to='/profile/edit'>
+              <NavLink to='/verifypassword'>
                 <div className={styles.change}>회원정보 수정</div>
               </NavLink>
               <div className={styles.logout} onClick={handleLogout}>로그아웃</div>
