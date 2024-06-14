@@ -9,7 +9,7 @@ function Noticeroot() {
     const [error, setError] = useState(null);
 
     useEffect(() => {
-        axios.get('http://localhost:8080/mo-itzy/main')
+        axios.get('http://localhost:8080/mo-itzy/notice')
             .then(response => {
                 // 데이터를 받은 후 내림차순으로 정렬
                 const sortedData = response.data.data.content.sort((a, b) => b.id - a.id);
