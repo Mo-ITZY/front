@@ -2,6 +2,7 @@ import { useState } from 'react';
 import './Signin.module.css';
 import Header from '../header/header';
 import style from './Signin.module.css';
+import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
 
 const Signin = () => {
@@ -41,26 +42,24 @@ const Signin = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      const response = await fetch('http://localhost:8080/mo-itzy/join', {
-        method: 'POST',
+      const response = await axios.post('http://localhost:8080/mo-itzy/join', formData, {
         headers: {
           'Content-Type': 'application/json'
-        },
-        body: JSON.stringify(formData)
+        }
       });
 
-      if (response.ok) {
+      if (response.status === 200) {
         console.log('Signup successful');
-        alert('회원가입이 완료되었습니다.')
+        alert('회원가입이 완료되었습니다.');
         navigate('/login'); // 회원가입 성공 시 로그인 페이지로 이동
       } else {
         console.log('Signup failed');
-        alert('회원가입이 실패되었습니다.')
+        alert('회원가입이 실패되었습니다.');
       }
 
     } catch (error) {
       console.error('Error:', error);
-      alert('회원가입이 실패되었습니다.')
+      alert('회원가입이 실패되었습니다.');
     }
   };
 
