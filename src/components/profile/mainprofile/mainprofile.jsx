@@ -25,7 +25,7 @@ function MainProfile() {
         });
         console.log("user_response!!!!!: ",response);
         setUser(response.data);
-        console.log("user_data!!!!!: ",user);
+        console.log("user_data!!!!!: ",user.data);
       } catch (error) {
         console.error('Failed to fetch user profile:', error);
       }
