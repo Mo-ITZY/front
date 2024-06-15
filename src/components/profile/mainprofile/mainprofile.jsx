@@ -3,29 +3,36 @@ import axios from 'axios';
 import { useState, useEffect } from 'react';
 import styles from './mainprofile.module.css';
 
-
 function MainProfile() {
   const [user, setUser] = useState(null);
   const navigate = useNavigate();
-
+  const [userRole, setUserRole] = useState(null);
 
   useEffect(() => {
-    const fetchUserProfile = async () => {
-      const token = localStorage.getItem('token');
-      if (!token) {
-        console.error('No token found');
-        return;
-      }
+    const token = localStorage.getItem('token');
+    const role = localStorage.getItem('role');
 
+    if (role) {
+      setUserRole(role);
+      console.log("role", role);
+      console.log("userRole", userRole);
+    }
+
+    if (!token) {
+      console.error('No token found');
+      return;
+    }
+
+    const fetchUserProfile = async () => {
       try {
         const response = await axios.get('http://localhost:8080/mo-itzy/mypage', {
           headers: {
             Authorization: `${token}`
           }
         });
-        console.log("user_response!!!!!: ",response);
+        console.log("user_response!!!!!: ", response);
         setUser(response.data);
-        console.log("user_data!!!!!: ",user.data);
+        console.log("user_data!!!!!: ", response.data);
       } catch (error) {
         console.error('Failed to fetch user profile:', error);
       }
@@ -37,6 +44,7 @@ function MainProfile() {
   const handleLogout = () => {
     if (window.confirm('정말 로그아웃 하시겠습니까?')) {
       localStorage.removeItem('token');
+      localStorage.removeItem('role');
       navigate('/login');
     }
   };
@@ -50,10 +58,16 @@ function MainProfile() {
             <div className={styles.name}>이름: {user.data.name}</div>
             <div className={styles.review}>작성하신 리뷰 : {user.data.reviewCount ?? 0}개</div>
             <div className={styles.location}>
-              <NavLink to='/verifypassword'>
-                <div className={styles.change}>회원정보 수정</div>
-              </NavLink>
-              <div className={styles.logout} onClick={handleLogout}>로그아웃</div>
+              {userRole === 'ADMIN' ? (
+                <div className={styles.logout} onClick={handleLogout}>로그아웃</div>
+              ) : (
+                <>
+                  <NavLink to='/verifypassword'>
+                    <div className={styles.change}>회원정보 수정</div>
+                  </NavLink>
+                  <div className={styles.logout} onClick={handleLogout}>로그아웃</div>
+                </>
+              )}
             </div>
           </>
         ) : (
