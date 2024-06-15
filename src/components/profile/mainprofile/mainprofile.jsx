@@ -14,7 +14,7 @@ function MainProfile() {
 
     if (role) {
       setUserRole(role);
-      console.log("role", role);
+      console.log("role: ", role);
       console.log("userRole", userRole);
     }
 

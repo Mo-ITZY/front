@@ -7,6 +7,7 @@ import { NavLink } from 'react-router-dom';
 function Likeroot() {
   const [datas, setDatas] = useState([]);
   const token = localStorage.getItem('token');
+  const [totalPages, settotalPages] = useState();
   const size = 5;
   const page = 0;
 
@@ -27,7 +28,9 @@ function Likeroot() {
           }
         );
         console.log("page", pageNo);
+        console.log("Aaa", response);
         console.log("user_response!!!!!: ", response.data.data.data.content || []);
+        settotalPages(response.data.data.data.totalPages);
         setDatas(response.data.data.data.content || []);
       } catch (error) {
         console.error('Failed to fetch user profile:', error);
@@ -63,6 +66,7 @@ function Likeroot() {
       );
       console.log('Response:', response);
       alert('찜 목록에서 삭제 되었습니다.');
+      window.location.reload();
     } catch (error) {
       console.error('Error submitting review:', error);
     }
@@ -124,7 +128,8 @@ function Likeroot() {
       <div>
         <button onClick={() => setPageNo(prevPageNo => Math.max(prevPageNo - 1, 0))} disabled={pageNo === 0} className={styles.before_button}>이전</button>
         <span className={styles.page_word}>{pageNo + 1}</span>
-        <button onClick={() => setPageNo(prevPageNo => prevPageNo + 1)} className={styles.next_button}>다음</button>
+        <button onClick={() => setPageNo(prevPageNo => Math.min(prevPageNo + 1, totalPages - 1))} 
+                    disabled={pageNo === totalPages - 1} className={styles.next_button}>다음</button>
       </div>
     </div>
   );

@@ -7,13 +7,23 @@ import Header from '../header/header';
 function Noticeroot() {
     const [Inform, setInform] = useState([]);
     const [error, setError] = useState(null);
+    const [totalPages, settotalPages] = useState();
+    const page = 0;
+    const size = 10;
+    const [pageNo, setPageNo] = useState(page);
+    const role = localStorage.getItem('role');
+    console.log(role);
 
     useEffect(() => {
-        axios.get('http://localhost:8080/mo-itzy/notice')
+        axios.get(`http://localhost:8080/mo-itzy/notice?page=${pageNo}&size=${size}`)
             .then(response => {
                 // 데이터를 받은 후 내림차순으로 정렬
-                const sortedData = response.data.data.content.sort((a, b) => b.id - a.id);
+                //const sortedData = response.data.data.content.sort((a, b) => b.id - a.id);
+                const sortedData =  response.data.data.content;
+                console.log("aaaaaaaa",response);
+                console
                 setInform(sortedData);
+                settotalPages(response.data.data.totalPages);
             })
             .catch(error => {
                 if (error.response && error.response.status === 500) {
@@ -22,7 +32,7 @@ function Noticeroot() {
                     setError(error);
                 }
             });
-    }, []);
+    }, [pageNo]);
 
     if (error) {
         return <div>Error: {error.message}</div>;
@@ -50,7 +60,7 @@ function Noticeroot() {
                         <div className={styles.notice_views}>작성일</div>
                     </div>
                     <div className={styles.main_line}></div>
-                    {Inform.length === 0 ? (
+                     {Inform.length === 0 ? (
                         <div>공지사항이 없습니다.</div>
                     ) : (
                         <ul>
@@ -68,6 +78,26 @@ function Noticeroot() {
                             })}
                         </ul>
                     )}
+                    {role === 'ADMIN' && (
+                        <NavLink to="../addnotice">
+                            <div className={styles.write_button}>작성하기</div>
+                        </NavLink>
+                    )}
+                    <button 
+                        onClick={() => setPageNo(prevPageNo => Math.max(prevPageNo - 1, 0))} 
+                        disabled={pageNo === 0} 
+                        className={styles.before_button}
+                    >
+                    이전
+                    </button>
+                    <span className={styles.page_word}>{pageNo + 1}</span>
+                    <button 
+                    onClick={() => setPageNo(prevPageNo => Math.min(prevPageNo + 1, totalPages - 1))} 
+                    disabled={pageNo === totalPages - 1} 
+                    className={styles.next_button}
+                    >
+                    다음
+                    </button>
                 </div>
             </div>
         </div>
