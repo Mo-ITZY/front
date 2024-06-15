@@ -23,8 +23,8 @@ const Loginroot = () => {
       console.log('Login response:', response);
 
       if (response.data.status === 'OK') {
-        console.log('성공');
-        localStorage.setItem('token', response.data.data.token); // Save token in local storage
+        localStorage.setItem('token', response.data.data.token); 
+        localStorage.setItem('role', response.data.data.role);
         console.log("token", response.data.data.token);
         navigate('/main');
         window.location.reload();

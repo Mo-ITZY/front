@@ -9,6 +9,8 @@ function Detail() {
   const location = useLocation();
   const [items] = useState(location.state || null);
 
+  const token = localStorage.getItem('token');
+
   useEffect(() => {
     if (!items) {
       console.error("아이템 이상:", id);
@@ -54,9 +56,13 @@ function Detail() {
         <div className={styles.content}>{items.expense}</div>
       </div>
       <div className={styles.aa}>
+        {token ? (
         <NavLink to={'../addreview'} state={items}>
           <div className={styles.go_reivew} >리뷰 작성</div>
         </NavLink>
+        ) : (
+          null
+        )}
       </div>
       <div>
         <div className={styles.main_line}></div>

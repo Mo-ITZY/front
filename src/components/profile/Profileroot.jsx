@@ -3,10 +3,11 @@ import Mainprofile from './mainprofile/mainprofile';
 import Header from '../header/header';
 import Noticebox from './notice_box/noticebox';
 import { useState } from 'react';
-import DeleteMemberInfo from './deletemember/Deletememberinfo'; // Import the deletion component
+import DeleteMemberInfo from './deletemember/Deletememberinfo'; // 삭제 컴포넌트 import
 
 function Profileroot() {
   const [showPopup, setShowPopup] = useState(false);
+  const role = localStorage.getItem('role');
 
   const handleDeleteClick = () => {
     setShowPopup(true);
@@ -22,8 +23,14 @@ function Profileroot() {
         <Header />
         <Mainprofile />
         <Noticebox />
-        <div className={styles.secession} onClick={handleDeleteClick}>회원 탈퇴</div>
-        {showPopup && <DeleteMemberInfo onClose={handleClosePopup} />} {/* Show popup */}
+        <div>
+          {role === 'USER' ? (
+            <>
+              <div className={styles.secession} onClick={handleDeleteClick}>회원 탈퇴</div>
+              {showPopup && <DeleteMemberInfo onClose={handleClosePopup} />} {/* 팝업 표시 */}
+            </>
+          ) : null}
+        </div>
       </div>
     </div>
   );

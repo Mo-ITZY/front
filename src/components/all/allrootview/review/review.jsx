@@ -8,13 +8,12 @@ function Review() {
   const items = location.state;
   const [datas, setDatas] = useState([]);
 
-  console.log("리뷰 아이템:", items);
 
   useEffect(() => {
     const fetchDataFromAPI = async () => {
       try {
         const response = await axios.get(`http://localhost:8080/mo-itzy/festivals/${items.id}/review`);
-        console.log("리뷰 데이터!!!!!:", response); // 콘솔에 데이터 출력
+        console.log("리뷰 데이터 입니다.!!!!!:", response); // 콘솔에 데이터 출력
         setDatas(response.data.data); // response.data.data가 배열이라고 가정
       } catch (error) {
         console.error("Error fetching festivals:", error);
