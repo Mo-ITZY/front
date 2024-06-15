@@ -1,8 +1,8 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
 import styles from './Verifypassword.module.css';
 import axios from 'axios';
-import EditMemberInfo from '../editmemberinfo/Editmemberinfo';
 import { useNavigate } from 'react-router-dom';
+import Header from '../../header/header';
 
 const VerifyPassword = () => {
   const [passwordCheck, setPasswordCheck] = useState('');
@@ -33,8 +33,9 @@ const VerifyPassword = () => {
           }
         }
       );
+      console.log(response);
       
-      if (response.status === 200) {
+      if (response.data.status === "OK") {
         navigate('/profile/edit'); 
       } else {
         setError('비밀번호가 일치하지 않습니다.');
@@ -47,8 +48,10 @@ const VerifyPassword = () => {
 
   return (
     <div className={styles.modal}>
+      <Header />
       <div className={styles.modal_content}>
-        <h2>비밀번호 확인</h2>
+        <div className={styles.title}>비밀번호 확인</div>
+        <div className={styles.Information}>회원정보를 수정하기 위해서 비밀번호를 다시 입력해주세요</div>
         <form onSubmit={handleSubmit}>
           <input
             type="password"

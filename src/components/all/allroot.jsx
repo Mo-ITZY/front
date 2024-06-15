@@ -9,8 +9,10 @@ function ALLroot() {
   const location = useLocation();
   const searchData = location.state || { keyword: '', page: 0, size: 5 };
   const navigate = useNavigate();
+  const [totalPages, settotalPages] = useState();
 
   const [pageNo, setPageNo] = useState(searchData.page);
+  
 
   useEffect(() => {
     const fetchDataFromAPI = async () => {
@@ -18,7 +20,9 @@ function ALLroot() {
         console.log("데이터 셋~", searchData);
         console.log("페이지 넘버", pageNo);
         const response = await axios.post(`http://localhost:8080/mo-itzy/festivals?page=${pageNo}&size=5`, { keyword: searchData.keyword });
+        console.log("response",response);
         console.log("데이터 셋~", response.data.data.content); // 콘솔에 데이터 출력
+        settotalPages(response.data.data.totalPages);
         setDatas(response.data.data.content || []);
       } catch (error) {
         console.error("Error fetching festivals:", error);
@@ -37,6 +41,13 @@ function ALLroot() {
     console.log("찜 버튼 클릭");
 
     const token = localStorage.getItem('token');
+    const role = localStorage.getItem('role');
+
+    console.log("role ::: ", role);
+    if(role == "ADMIN"){
+        alert("관리자는 찜 목록을 사용할 수 없습니다.");
+        return;
+    }
     if (!token) {
       if (window.confirm('로그인 후 사용하시겠습니까?')) {
         navigate('/login');
@@ -56,8 +67,16 @@ function ALLroot() {
         }
       );
       console.log('Response:', response);
-      alert('찜 목록에 추가 되었습니다.');
-      navigate('../like');
+      if(response.data.status == "CONFLICT"){
+        alert('이미 찜한 축제 입니다.');
+        navigate('/allroot');
+        return;
+      }
+      else{
+        alert('찜 목록에 추가 되었습니다.');
+        navigate('../like');
+      }
+  
     } catch (error) {
       console.error('Error submitting review:', error);
     }
@@ -117,7 +136,8 @@ function ALLroot() {
       <div>
         <button onClick={() => setPageNo(prevPageNo => Math.max(prevPageNo - 1, 0))} disabled={pageNo === 0} className={styles.before_button}>이전</button>
         <span className={styles.page_word}>{pageNo + 1}</span>
-        <button onClick={() => setPageNo(prevPageNo => prevPageNo + 1)} className={styles.next_button}>다음</button>
+        <button onClick={() => setPageNo(prevPageNo => Math.min(prevPageNo + 1, totalPages - 1))} 
+                    disabled={pageNo === totalPages - 1}  className={styles.next_button}>다음</button>
       </div>
     </div>
   );

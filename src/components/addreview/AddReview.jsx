@@ -151,7 +151,7 @@ function AddReview() {
   const [content, setContent] = useState('');
   const navigate = useNavigate();
 
-  const [Img, setImg] = useState('');
+  const Img = "img";
 
   console.log("리뷰 작성 데이터:", items);
 
@@ -180,9 +180,14 @@ function AddReview() {
         }
       );
       console.log('Response:', response);
-      alert('리뷰가 성공적으로 제출되었습니다!');
-      navigate('/profile');
-
+      if(response.data.status == "CONFLICT"){
+        alert('이미 리뷰를 작성하신 축제입니다.');
+        navigate('/allroot');
+      }
+      else{
+        alert('리뷰가 성공적으로 제출되었습니다!');
+        navigate('/allroot');
+      }
     } catch (error) {
       console.error('Error submitting review:', error);
       if (error.response && error.response.status === 400) {
@@ -211,13 +216,6 @@ function AddReview() {
                 placeholder='리뷰내용을 작성해주세요'
               />
               <div>
-              <input 
-                type="text" 
-                value={Img} 
-                placeholder='이미지를 입력해주세요' 
-                onChange={(e) => setImg(e.target.value)} 
-                className={styles.input_box} 
-              />
             </div>
             </div>
             <button type="submit" className={styles.submit_button}>작성완료</button>

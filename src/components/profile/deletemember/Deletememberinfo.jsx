@@ -179,6 +179,7 @@ import styles from './Deletememberinfo.module.css';
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
+import PropTypes from 'prop-types'; // prop-types를 임포트합니다.
 
 const Deletememberinfo = ({ onClose }) => {
   const [password, setPassword] = useState('');
@@ -238,6 +239,7 @@ const Deletememberinfo = ({ onClose }) => {
       console.log(response)
       localStorage.removeItem('token');
       console.log('탈퇴 성공');
+      alert(`회원 탈퇴 되셨습니다.`);
       navigate('/'); // 처리 후 이동
     } else { // 탈퇴 실패 
       console.error('탈퇴 실패');
@@ -250,8 +252,12 @@ const Deletememberinfo = ({ onClose }) => {
   return (
     <div className={styles.popup}>
       <div className={styles.popupContent}>
-        <button className={styles.closeButton} onClick={onClose}>X</button>
-        <p>정말 탈퇴하시겠습니까? 비밀번호를 입력해주세요</p>
+        <button className={styles.closeButton} onClick={onClose}>x</button>
+        <div className={styles.loca}>
+          <div className={styles.informaition}>정말 탈퇴하시겠습니까?</div>
+          <div className={styles.informaition}>탈퇴를 원하신다면 비밀번호를 입력해주세요</div>
+        </div>
+
         <input
           type="password"
           className={styles.noticebox_content_input}
@@ -259,7 +265,7 @@ const Deletememberinfo = ({ onClose }) => {
           value={password}
           onChange={(e) => setPassword(e.target.value)}
         />
-        <button onClick={validationPassword}>비밀번호 확인</button>
+        <button onClick={validationPassword} className={styles.password_input}>비밀번호 입력</button>
         {isPasswordValid && (
           <button onClick={handleDelete} className={styles.noticebox_content_button}>탈퇴하기</button>
         )}
@@ -268,5 +274,7 @@ const Deletememberinfo = ({ onClose }) => {
     </div>
   );
 }
-
+Deletememberinfo.propTypes = {
+  onClose: PropTypes.func.isRequired, // onClose는 함수여야 합니다.
+};
 export default Deletememberinfo;

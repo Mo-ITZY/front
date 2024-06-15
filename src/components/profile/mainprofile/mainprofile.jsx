@@ -14,7 +14,7 @@ function MainProfile() {
 
     if (role) {
       setUserRole(role);
-      console.log("role", role);
+      console.log("role: ", role);
       console.log("userRole", userRole);
     }
 
@@ -39,7 +39,7 @@ function MainProfile() {
     };
 
     fetchUserProfile();
-  }, []);
+  },);
 
   const handleLogout = () => {
     if (window.confirm('정말 로그아웃 하시겠습니까?')) {

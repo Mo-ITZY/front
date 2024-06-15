@@ -2,11 +2,13 @@ import styles from './Addnotice.module.css';
 import { useState } from 'react';
 import axios from 'axios';
 import Header from '../../header/header';
+import { useNavigate } from "react-router-dom";
 
 function Addnotice() {
   const [title, setTitle] = useState('');
   const [content, setContent] = useState('');
-  const [writeDate, setDate] = useState('');
+  const navigate = useNavigate();
+  //const [writeDate, setDate] = useState('');
 
   const handleSubmit = async (event) => {
     event.preventDefault();
@@ -36,7 +38,7 @@ function Addnotice() {
         }
       });
       console.log('Notice submitted:', response.data);
-      // 성공적으로 제출한 후 폼 초기화 (선택 사항)
+      navigate('/notice')
     } catch (error) {
       console.error('공지사항 제출 중 오류가 발생했습니다:', error);
     }
