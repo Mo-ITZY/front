@@ -6,6 +6,8 @@ import Mainlogo from './img/bottomicon.svg?react'
 
 function Bottomnav() {
   const location = useLocation();
+  const token = localStorage.getItem('token');
+  const role = localStorage.getItem('role');
 
   if (location.pathname === "/") {
     return null;
