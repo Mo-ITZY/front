@@ -179,7 +179,6 @@ import styles from './Deletememberinfo.module.css';
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
-import PropTypes from 'prop-types'; // prop-types를 임포트합니다.
 
 const Deletememberinfo = ({ onClose }) => {
   const [password, setPassword] = useState('');
@@ -274,7 +273,5 @@ const Deletememberinfo = ({ onClose }) => {
     </div>
   );
 }
-Deletememberinfo.propTypes = {
-  onClose: PropTypes.func.isRequired, // onClose는 함수여야 합니다.
-};
+
 export default Deletememberinfo;
