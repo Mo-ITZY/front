@@ -7,10 +7,10 @@ function MainProfile() {
   const [user, setUser] = useState(null);
   const navigate = useNavigate();
   const [userRole, setUserRole] = useState(null);
+  const [role, setRole] = useState(localStorage.getItem('role'));
 
   useEffect(() => {
     const token = localStorage.getItem('token');
-    const role = localStorage.getItem('role');
 
     if (role) {
       setUserRole(role);
@@ -31,6 +31,7 @@ function MainProfile() {
           }
         });
         console.log("user_response!!!!!: ", response);
+
         setUser(response.data);
         console.log("user_data!!!!!: ", response.data);
       } catch (error) {
@@ -55,7 +56,11 @@ function MainProfile() {
         <div className={styles.profile}></div>
         {user ? (
           <>
-            <div className={styles.name}>이름: {user.data.name}</div>
+          {userRole === 'ADMIN' ? (
+              <div className={styles.name}>관리자님</div>
+            ): <div className={styles.name}>{user.data.name}님</div>
+          }
+            
             <div className={styles.review}>작성하신 리뷰 : {user.data.reviewCount ?? 0}개</div>
             <div className={styles.location}>
               {userRole === 'ADMIN' ? (

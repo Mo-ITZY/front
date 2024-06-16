@@ -108,7 +108,7 @@ function Likeroot() {
 
                 return (
                   <div key={id} className={styles.box11}>
-                    <NavLink to={`/allrootview/${id}`} state={{id, name, img, lat, lng, trafficInfo ,startDate: formattedStartDate, expense, endDate: formattedEndDate, contact, facilites, homepage, description, place: {first, second, third, detail}}} className={styles.navLink}>
+                    <NavLink to={`/allrootview/${id}`} state={{id, name, img, lat, lng, trafficInfo ,startDate: formattedStartDate, expense, endDate: formattedEndDate, contact, homepage, description, place: {first, second, third, detail}}} className={styles.navLink}>
                       <img src={img} className={styles.img_size} alt={name} />
                       <div>
                         <p>{name}</p>

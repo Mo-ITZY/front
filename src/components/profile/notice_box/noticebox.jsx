@@ -4,10 +4,11 @@ import { NavLink } from 'react-router-dom';
 
 function NoticeBox() {
   const role = localStorage.getItem('role');
+  const token = localStorage.getItem('token');
 
   return (
     <div>
-      {role === 'USER' ? (
+      {!token || role === 'USER' ? (
         <div className={styles.notice_box}>
           <div className={styles.detail_box}>
             공지사항
