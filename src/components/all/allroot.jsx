@@ -36,12 +36,13 @@ function ALLroot() {
     event.stopPropagation();
   };
 
+  const role = localStorage.getItem('role');
+
   const handleFormSubmit = async (event, id) => {
     event.preventDefault();
     console.log("찜 버튼 클릭");
 
     const token = localStorage.getItem('token');
-    const role = localStorage.getItem('role');
 
     console.log("role ::: ", role);
     if(role == "ADMIN"){
@@ -123,9 +124,13 @@ function ALLroot() {
                     <p>{name}</p>
                     <p>{first} {second} {third} {detail}</p>
                     <p>{formattedStartDate} - {formattedEndDate}</p>
-                    <form onSubmit={(e) => handleFormSubmit(e, id)} onClick={handleFormClick}>
-                      <button type="submit" className={styles.like}>찜</button>
-                    </form>
+                    {role === "USER" ? (
+                      <>
+                        <form onSubmit={(e) => handleFormSubmit(e, id)} onClick={handleFormClick}>
+                          <button type="submit" className={styles.like}>찜</button>
+                        </form>
+                      </>
+                    ): null}
                   </div>
                 </NavLink>
               </div>
