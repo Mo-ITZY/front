@@ -72,7 +72,7 @@ import DeleteMember from './components/profile/deletemember/Deletememberinfo';
           <Route path="/addnotice" element={isPC ? <AddNotice /> : isMobile && <AddNotice />} />
           <Route path="/review" element={isPC ? <Review /> : isMobile && <Review />} />
           <Route path="/profile/edit" element={isPC ? <EditProfile /> : isMobile && <EditProfile />} />
-          <Route path="/profile/delete" element={isPC ? <DeleteMember /> : isMobile && <DeleteMember />} />
+          {/* <Route path="/profile/delete" element={isPC ? <DeleteMember /> : isMobile && <DeleteMember />} /> */}
           <Route path="/verifypassword" element={isPC ? <VerifyPassword /> : isMobile && <VerifyPassword />} />
         </Routes>
         <Bottomnav />
